@@ -37,17 +37,6 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-export const trustPlaceholders = [
-  "Client logo",
-  "Client logo",
-  "Client logo",
-  "Client logo",
-  "Client logo",
-  "Client logo",
-  "Client logo",
-  "Client logo",
-];
-
 export const securityClaims = [
   {
     title: "ISO 27001-aligned",

@@ -137,8 +137,8 @@ export function PricingInsights() {
             <div className="cost-viz">
               <h4>Cost estimate</h4>
               <div className="price-pills">
-                <span>$3,999/mo</span>
-                <span>$5,999/mo</span>
+                <span>$2,999/mo</span>
+                <span>$4,999/mo</span>
               </div>
               <div className="bell" aria-hidden>
                 <svg viewBox="0 0 280 100" preserveAspectRatio="none">

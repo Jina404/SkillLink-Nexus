@@ -21,7 +21,7 @@ export const plans: Plan[] = [
     subtitle: "For one executive who needs dedicated support",
     description:
       "A full-time executive assistant matched to your working style—live in about 24 hours.",
-    price: "$3,999",
+    price: "$2,999",
     period: "/ month",
     includesLabel: "Starter includes:",
     features: [
@@ -56,7 +56,7 @@ export const plans: Plan[] = [
     subtitle: "For leaders sharing support across a small team",
     description:
       "One dedicated EA supporting up to two executives, with the same managed service and rematch promise.",
-    price: "$4,999",
+    price: "$3,999",
     period: "/ month",
     popular: true,
     includesLabel: "Everything in Starter, plus:",
@@ -92,7 +92,7 @@ export const plans: Plan[] = [
     subtitle: "For teams that need coverage without gaps",
     description:
       "Support for up to three executives, with PTO and leave backfill included so work never stalls.",
-    price: "$5,999",
+    price: "$4,999",
     period: "/ month",
     includesLabel: "Everything in Enhanced, plus:",
     features: [
@@ -128,7 +128,7 @@ export const pricingInsights = {
   subtitle:
     "We’ll show the typical monthly range for dedicated support matched to the work you need.",
   placeholder: "To start, describe what you need done.",
-  affordable: "$3,999/mo",
-  typical: "$4,999/mo",
-  experts: "$5,999/mo",
+  affordable: "$2,999/mo",
+  typical: "$3,999/mo",
+  experts: "$4,999/mo",
 };

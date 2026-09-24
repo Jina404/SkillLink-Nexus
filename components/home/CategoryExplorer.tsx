@@ -1,24 +1,6 @@
 import Link from "next/link";
 import { categories } from "@/data/categories";
-import { trustPlaceholders } from "@/data/testimonials";
 import { categoryIcon } from "@/components/ui/icons";
-
-export function TrustLogos() {
-  return (
-    <section className="trust-section">
-      <div className="container">
-        <p className="eyebrow">Trusted by leaders and growing teams</p>
-        <div className="trust-row" aria-label="Client logo placeholders">
-          {trustPlaceholders.map((label, i) => (
-            <div key={`${label}-${i}`} className="trust-placeholder">
-              {label}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export function CategoryExplorer() {
   return (
