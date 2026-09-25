@@ -777,7 +777,7 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   inset: 0;
   z-index: 0;
   background: url("/herosection-poster.jpg") center / cover no-repeat;
-  filter: grayscale(0.4) brightness(0.92) contrast(1.02);
+  filter: grayscale(0.2) brightness(1.08) contrast(1.02);
 }
 
 .hero-fullbleed-video {
@@ -789,7 +789,7 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   object-position: center center;
   display: block;
   opacity: 1;
-  filter: grayscale(0.4) brightness(0.92) contrast(1.02);
+  filter: grayscale(0.2) brightness(1.08) contrast(1.02);
 }
 
 .hero-fullbleed-fade {
