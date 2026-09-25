@@ -17,6 +17,7 @@ export default function Home() {
       <link rel="preload" href="/hero-bg-poster.jpg" as="image" type="image/jpeg" />
       <link rel="preload" href="/herosection.mp4" as="video" type="video/mp4" />
       <link rel="preload" href="/hero-bg.mp4" as="video" type="video/mp4" />
+      <link rel="preload" href="/skills-poster.jpg" as="image" type="image/jpeg" />
       <Hero />
       <CategoryExplorer />
       <ToolsFluent />

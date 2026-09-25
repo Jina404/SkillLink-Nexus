@@ -2,20 +2,22 @@ import Link from "next/link";
 import { categories } from "@/data/categories";
 import { getOfferingsByCategory } from "@/data/services";
 import { assistantProfiles } from "@/data/assistantProfiles";
+import { SkillsVideo } from "@/components/home/SkillsVideo";
 
 export function ServiceListings({ limitCategories = 4 }: { limitCategories?: number }) {
   const shown = categories.slice(0, limitCategories);
 
   return (
-    <section className="section section-soft">
-      <div className="container">
+    <section className="section skills-listings">
+      <SkillsVideo />
+      <div className="skills-listings-content">
         <div className="section-heading">
           <h2>Find support by skill and specialty</h2>
           <p>Structured offerings you can browse—then match with a dedicated assistant.</p>
         </div>
 
         {shown.map((cat) => {
-          const offerings = getOfferingsByCategory(cat.slug);
+          const offerings = getOfferingsByCategory(cat.slug).slice(0, 4);
           if (!offerings.length) return null;
           return (
             <div key={cat.slug} className="listing-block">
