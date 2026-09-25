@@ -768,22 +768,34 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: #ececef url("/herosection-poster.jpg") center / cover no-repeat;
+  background: #ececef;
+}
+
+.hero-fullbleed-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: url("/herosection-poster.jpg") center / cover no-repeat;
+  filter: grayscale(0.4) brightness(0.92) contrast(1.02);
 }
 
 .hero-fullbleed-video {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center center;
   display: block;
   opacity: 1;
-  filter: grayscale(0.25) brightness(1.05) contrast(1.02);
+  filter: grayscale(0.4) brightness(0.92) contrast(1.02);
 }
 
 .hero-fullbleed-fade {
   position: absolute;
   inset: 0;
+  z-index: 2;
   background: linear-gradient(
     180deg,
     transparent 0%,
