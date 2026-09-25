@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { popularSearches } from "@/data/popularSearches";
 import { IconArrow, IconSearch, IconSpark } from "@/components/ui/icons";
 
@@ -10,6 +10,35 @@ export function Hero() {
   const router = useRouter();
   const [audience, setAudience] = useState<"hire" | "work">("hire");
   const [query, setQuery] = useState("");
+  const bgVideoRef = useRef<HTMLVideoElement>(null);
+  const cardVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = bgVideoRef.current;
+    if (!video) return;
+
+    const applySlowPlay = () => {
+      video.playbackRate = 0.25;
+      video.defaultPlaybackRate = 0.25;
+      void video.play().catch(() => {});
+    };
+
+    applySlowPlay();
+    video.addEventListener("loadeddata", applySlowPlay);
+    video.addEventListener("canplay", applySlowPlay);
+    video.addEventListener("play", applySlowPlay);
+    return () => {
+      video.removeEventListener("loadeddata", applySlowPlay);
+      video.removeEventListener("canplay", applySlowPlay);
+      video.removeEventListener("play", applySlowPlay);
+    };
+  }, []);
+
+  useEffect(() => {
+    const cardVideo = cardVideoRef.current;
+    if (!cardVideo) return;
+    void cardVideo.play().catch(() => {});
+  }, []);
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
@@ -22,11 +51,35 @@ export function Hero() {
   }
 
   return (
-    <section className="hero-wrap">
+    <section className="hero-wrap hero-fullbleed" aria-label="Hero">
+      <div className="hero-fullbleed-bg" aria-hidden="true">
+        <video
+          ref={bgVideoRef}
+          className="hero-fullbleed-video"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          poster="/herosection-poster.jpg"
+          src="/herosection.mp4"
+        />
+        <div className="hero-fullbleed-fade" />
+      </div>
+
       <div className="container-wide">
         <div className="hero-card">
           <div className="hero-media" aria-hidden>
-            <video autoPlay muted loop playsInline src="/hero-bg.mp4" />
+            <video
+              ref={cardVideoRef}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              poster="/hero-bg-poster.jpg"
+              src="/hero-bg.mp4"
+            />
           </div>
           <div className="hero-overlay" aria-hidden />
 

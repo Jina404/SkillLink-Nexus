@@ -4,7 +4,7 @@ import { categoryIcon } from "@/components/ui/icons";
 
 export function CategoryExplorer() {
   return (
-    <section className="section">
+    <section className="section section-after-hero">
       <div className="container">
         <div className="section-heading">
           <h2>Executive support for every kind of workday</h2>
