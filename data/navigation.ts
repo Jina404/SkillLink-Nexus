@@ -11,6 +11,7 @@ export const brand = {
   logo: "/logo.png",
   tagline: "Dedicated executive assistants for leaders who need leverage",
   email: "hello@example.com",
+  schedulerUrl: "https://cal.com/skilllink-nexus-3lofv4/30",
 };
 
 export const primaryNav: {

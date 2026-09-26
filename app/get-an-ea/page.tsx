@@ -44,27 +44,126 @@ const countryCodes = [
   { code: "+49", label: "+49" },
 ];
 
+const schedulerUrl = (
+  process.env.NEXT_PUBLIC_SCHEDULER_URL ||
+  process.env.NEXT_PUBLIC_MS_BOOKINGS_URL ||
+  brand.schedulerUrl
+).trim();
+
+type Lead = {
+  firstName: string;
+  fullName: string;
+  email: string;
+  notes: string;
+  mailto: string;
+};
+
+function buildLead(data: FormData): Lead {
+  const firstName = String(data.get("firstName") || "").trim();
+  const lastName = String(data.get("lastName") || "").trim();
+  const phone = String(data.get("phone") || "").trim();
+  const details = [
+    `Company: ${data.get("company")}`,
+    `Company size: ${data.get("companySize")}`,
+    `Timezone: ${data.get("timezone")}`,
+    `Role: ${data.get("role")}`,
+    `Phone: ${phone ? `${data.get("countryCode")} ${phone}` : "(not provided)"}`,
+  ];
+  const subject = encodeURIComponent("Book a call to hire an EA");
+  const body = encodeURIComponent(
+    [
+      `First name: ${firstName}`,
+      `Last name: ${lastName}`,
+      `Work email: ${data.get("email")}`,
+      ...details,
+    ].join("\n"),
+  );
+  return {
+    firstName,
+    fullName: [firstName, lastName].filter(Boolean).join(" "),
+    email: String(data.get("email") || "").trim(),
+    notes: details.join("\n"),
+    mailto: `mailto:${brand.email}?subject=${subject}&body=${body}`,
+  };
+}
+
+function buildSchedulerSrc(base: string, lead: Lead): string {
+  let url: URL;
+  try {
+    url = new URL(base);
+  } catch {
+    return base;
+  }
+  const host = url.hostname;
+  const set = (key: string, value: string) => {
+    if (value) url.searchParams.set(key, value);
+  };
+
+  if (host === "cal.com" || host.endsWith(".cal.com")) {
+    set("name", lead.fullName);
+    set("email", lead.email);
+    set("notes", lead.notes);
+  } else if (host === "calendly.com" || host.endsWith(".calendly.com")) {
+    set("name", lead.fullName);
+    set("email", lead.email);
+    set("a1", lead.notes);
+    url.searchParams.set("embed_type", "Inline");
+    url.searchParams.set("embed_domain", window.location.hostname);
+    url.searchParams.set("hide_gdpr_banner", "1");
+  }
+  return url.toString();
+}
+
 export default function GetAnEAPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [lead, setLead] = useState<Lead | null>(null);
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const subject = encodeURIComponent("Book a call to hire an EA");
-    const body = encodeURIComponent(
-      [
-        `First name: ${data.get("firstName")}`,
-        `Last name: ${data.get("lastName")}`,
-        `Work email: ${data.get("email")}`,
-        `Phone: ${data.get("countryCode")} ${data.get("phone") || "(not provided)"}`,
-        `Company: ${data.get("company")}`,
-        `Company size: ${data.get("companySize")}`,
-        `Timezone: ${data.get("timezone")}`,
-        `Role: ${data.get("role")}`,
-      ].join("\n"),
-    );
-    window.location.href = `mailto:${brand.email}?subject=${subject}&body=${body}`;
+    const next = buildLead(new FormData(e.currentTarget));
+    if (schedulerUrl) {
+      setLead(next);
+      return;
+    }
+    window.location.href = next.mailto;
     setSubmitted(true);
+  }
+
+  if (lead) {
+    return (
+      <main className="page-shell book-page">
+        <div className="book-card is-scheduling">
+          <header className="book-header">
+            <h1>Pick a time for your call{lead.firstName ? `, ${lead.firstName}` : ""}</h1>
+            <p>
+              Choose a slot that works for you. You’ll get a calendar invite with the meeting
+              link{lead.email ? (
+                <>
+                  {" "}at <strong>{lead.email}</strong>
+                </>
+              ) : null}
+              .
+            </p>
+          </header>
+
+          <div className="book-scheduler">
+            <iframe
+              src={buildSchedulerSrc(schedulerUrl, lead)}
+              title="Schedule a call with SkillLink Nexus"
+              loading="lazy"
+              allow="fullscreen"
+            />
+          </div>
+
+          <div className="book-scheduler-foot">
+            <button type="button" className="btn btn-outline" onClick={() => setLead(null)}>
+              ← Edit details
+            </button>
+            <a href={lead.mailto}>Prefer email? Send us your details</a>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   return (
