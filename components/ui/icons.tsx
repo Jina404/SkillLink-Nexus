@@ -102,7 +102,16 @@ export function IconSearch({ className }: IconProps) {
 
 export function IconChevron({ className }: IconProps) {
   return (
-    <svg className={className} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.75" aria-hidden>
+    <svg
+      className={className}
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      aria-hidden
+    >
       <path d="M2.5 4.5 6 8l3.5-3.5" />
     </svg>
   );

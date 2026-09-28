@@ -84,7 +84,13 @@ export const footerSocial: {
   label: string;
   href: string;
   icon: "facebook" | "linkedin" | "x" | "youtube" | "instagram";
-}[] = [];
+}[] = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/skilllinknexus/",
+    icon: "linkedin",
+  },
+];
 
 export const footerLegal: NavLink[] = [
   { label: "Terms of Service", href: "/terms" },
