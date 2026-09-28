@@ -10,7 +10,7 @@ export const brand = {
   shortName: "SkillLink",
   logo: "/logo.png",
   tagline: "Dedicated executive assistants for leaders who need leverage",
-  email: "hello@example.com",
+  email: "hello@skilllinknexus.com",
   schedulerUrl: "https://cal.com/skilllink-nexus-3lofv4",
 };
 
@@ -74,8 +74,8 @@ export const footerColumns: {
       { label: "Careers", href: "/careers" },
       { label: "Contact us", href: "/get-an-ea" },
       { label: "Enterprise", href: "/for-businesses" },
-      { label: "Privacy Policy", href: "/security" },
-      { label: "Terms of Service", href: "/security" },
+      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms" },
     ],
   },
 ];
@@ -84,16 +84,10 @@ export const footerSocial: {
   label: string;
   href: string;
   icon: "facebook" | "linkedin" | "x" | "youtube" | "instagram";
-}[] = [
-  { label: "Facebook", href: "https://facebook.com", icon: "facebook" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-  { label: "X", href: "https://x.com", icon: "x" },
-  { label: "YouTube", href: "https://youtube.com", icon: "youtube" },
-  { label: "Instagram", href: "https://instagram.com", icon: "instagram" },
-];
+}[] = [];
 
 export const footerLegal: NavLink[] = [
-  { label: "Terms of Service", href: "/security" },
-  { label: "Privacy Policy", href: "/security" },
-  { label: "Accessibility", href: "/security" },
+  { label: "Terms of Service", href: "/terms" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Accessibility", href: "/accessibility" },
 ];

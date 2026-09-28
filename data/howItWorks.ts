@@ -76,7 +76,7 @@ export const matchingQuiz = {
   badge: "Free support scoping",
   title: "Not sure where to start with executive support?",
   subtitle:
-    "Answer three quick questions. We’ll point you to the right category and next step.",
+    "Pick your top priority. We’ll take you to the right category—or straight to a discovery call.",
   questions: [
     {
       id: "priority",

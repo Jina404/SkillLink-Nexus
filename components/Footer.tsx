@@ -53,28 +53,30 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="footer-social-row">
-          <div className="footer-social">
-            <span className="footer-social-label">Follow us</span>
-            <div className="footer-social-icons">
-              {footerSocial.map((item) => {
-                const Icon = socialIcons[item.icon];
-                return (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="footer-social-btn"
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={item.label}
-                  >
-                    <Icon />
-                  </a>
-                );
-              })}
+        {footerSocial.length > 0 ? (
+          <div className="footer-social-row">
+            <div className="footer-social">
+              <span className="footer-social-label">Follow us</span>
+              <div className="footer-social-icons">
+                {footerSocial.map((item) => {
+                  const Icon = socialIcons[item.icon];
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="footer-social-btn"
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={item.label}
+                    >
+                      <Icon />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
-        </div>
+        ) : null}
 
         <div className="footer-bottom">
           <span>© 2026 {brand.name}</span>

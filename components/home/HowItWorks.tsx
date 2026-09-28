@@ -40,14 +40,6 @@ export function MatchingQuiz() {
           </div>
 
           <div className="quiz-card">
-            <div className="quiz-progress">
-              <span>Question 1 of 3</span>
-              <div className="progress-bars" aria-hidden>
-                <span className="on" />
-                <span />
-                <span />
-              </div>
-            </div>
             <h3>{q.prompt}</h3>
             <div className="quiz-options">
               {q.options.map((opt) => {
@@ -207,12 +199,9 @@ function MatchVisual() {
         </div>
         <div className="hiw-match-meta">
           <strong>Alex R.</strong>
-          <div className="hiw-stars" aria-hidden>
-            ★★★★★
-          </div>
           <span className="hiw-role">Executive Assistant</span>
         </div>
-        <span className="hiw-match-tag">98% Match</span>
+        <span className="hiw-match-tag">Matched</span>
       </div>
       <div className="hiw-match-foot">
         <span className="hiw-status">

@@ -180,10 +180,9 @@ export const careersFaq: CareerFaq[] = [
 ];
 
 export const careersProof = {
-  rating: "4.7",
-  source: "Glassdoor",
-  label: "Don’t just take our word for it.",
-  ctaLabel: "Read how our team describes the work →",
+  label: "Built for long-term partnerships.",
+  highlight: "Remote-first · Dedicated CSM · Rematch at no cost",
+  ctaLabel: "See our values →",
   ctaHref: "#values",
 };
 

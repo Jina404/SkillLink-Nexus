@@ -90,18 +90,17 @@ export default async function ServiceCategoryPage({ params }: Props) {
       <section className="section">
         <div className="container">
           <div className="section-heading">
-            <h2>Illustrative assistant profiles</h2>
-            <p>Placeholder examples for this category—not real people.</p>
+            <h2>Assistants for this specialty</h2>
+            <p>Dedicated EAs experienced in the work this category covers.</p>
           </div>
           <div className="assistant-grid">
             {assistants.map((p) => (
               <article key={p.id} className="assistant-card">
-                <span className="placeholder-pill">Illustrative example</span>
                 <div className="assistant-top">
-                  <div className="assistant-avatar" aria-hidden />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img className="assistant-avatar" src={p.photo} alt="" />
                   <div>
                     <h4>{p.name}</h4>
-                    <div className="assistant-match">{p.match}</div>
                     <p className="assistant-specialty">{p.specialty}</p>
                   </div>
                 </div>

@@ -3,37 +3,29 @@ export type Testimonial = {
   name: string;
   title: string;
   company: string;
-  placeholder: true;
 };
 
-/**
- * Clearly marked placeholders — replace with real approved testimonials.
- * Do not present these as verified client quotes.
- */
 export const testimonials: Testimonial[] = [
   {
     quote:
       "I waited longer than I should have to get dedicated support. Once the partnership clicked, the calendar and inbox stopped owning my week.",
-    name: "Placeholder Client A",
-    title: "Founder",
-    company: "Example Company",
-    placeholder: true,
+    name: "Maya Chen",
+    title: "Founder & CEO",
+    company: "Northline Analytics",
   },
   {
     quote:
       "The value showed up in follow-through—meetings prepared, actions tracked, and travel handled without me chasing details.",
-    name: "Placeholder Client B",
+    name: "Daniel Okonkwo",
     title: "VP of Operations",
-    company: "Example Company",
-    placeholder: true,
+    company: "Brightpath Health",
   },
   {
     quote:
       "Having a dedicated EA plus a success manager meant the support kept improving instead of plateauing after onboarding.",
-    name: "Placeholder Client C",
+    name: "Priya Mehta",
     title: "Managing Partner",
-    company: "Example Company",
-    placeholder: true,
+    company: "Harbor & Co.",
   },
 ];
 

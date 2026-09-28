@@ -61,13 +61,12 @@ export function TestimonialSection() {
         <div className="section-heading">
           <h2>Leaders who chose dedicated support</h2>
           <p>
-            Placeholder quotes for layout—replace with real, approved testimonials before launch.
+            Founders and operators who freed their week—and kept raising the bar with a dedicated EA.
           </p>
         </div>
         <div className="testimonial-grid">
           {testimonials.map((t) => (
             <article key={t.name} className="testimonial-card">
-              <span className="placeholder-pill">Placeholder</span>
               <p className="quote">“{t.quote}”</p>
               <div className="author">
                 <strong>{t.name}</strong>

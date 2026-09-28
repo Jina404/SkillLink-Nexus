@@ -2,45 +2,26 @@ import Link from "next/link";
 import {
   careersBenefits,
   careersFaq,
-  careersHero,
   careersMission,
   careersProcess,
   careersProof,
   careersRoleExplainer,
   careersValues,
 } from "@/data/careers";
+import { CareersHero } from "@/components/careers/CareersHero";
 import { IconArrow } from "@/components/ui/icons";
 
 export default function CareersPage() {
   return (
     <main className="page-shell careers-page">
-      <section className="careers-hero">
-        <div className="container careers-hero-inner">
-          <p className="eyebrow">{careersHero.eyebrow}</p>
-          <h1>{careersHero.title}</h1>
-          <p className="careers-hero-sub">{careersHero.subtitle}</p>
-          <div className="careers-hero-actions">
-            <Link href={careersHero.primaryCta.href} className="btn btn-primary btn-lg">
-              {careersHero.primaryCta.label}
-            </Link>
-            <Link href={careersHero.secondaryCta.href} className="btn btn-outline btn-lg">
-              {careersHero.secondaryCta.label}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <CareersHero />
 
-      <section className="section-tight">
+      <section className="section-tight section-after-hero">
         <div className="container">
           <div className="careers-proof">
             <div>
               <p className="careers-proof-label">{careersProof.label}</p>
-              <p className="careers-proof-rating">
-                We’re rated <strong>{careersProof.rating}</strong> on {careersProof.source}
-                <span className="careers-stars" aria-hidden>
-                  ★★★★★
-                </span>
-              </p>
+              <p className="careers-proof-rating">{careersProof.highlight}</p>
             </div>
             <a href={careersProof.ctaHref} className="link-arrow">
               {careersProof.ctaLabel}

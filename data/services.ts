@@ -6,7 +6,7 @@ export type ServiceOffering = {
   href: string;
 };
 
-/** Structured service listings per category — placeholder offerings for browse UX. */
+/** Structured service listings per category. */
 export const serviceOfferings: ServiceOffering[] = [
   {
     id: "cal-1",

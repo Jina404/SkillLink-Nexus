@@ -37,8 +37,11 @@ export default function CareersApplyPage() {
 
         {submitted ? (
           <div className="book-success">
-            <h2>Application started</h2>
-            <p>Send the email draft to finish—we’ll review and share next steps.</p>
+            <h2>Thanks—you’re almost done</h2>
+            <p>
+              Confirm and send the email that opened so we receive your application. We’ll review
+              and share next steps.
+            </p>
             <Link href="/careers">Back to careers</Link>
           </div>
         ) : (
@@ -129,7 +132,7 @@ export default function CareersApplyPage() {
               Submit application →
             </button>
             <p className="book-legal">
-              By continuing you agree to our <Link href="/security">Privacy Policy</Link>.
+              By continuing you agree to our <Link href="/privacy">Privacy Policy</Link>.
             </p>
           </form>
         )}

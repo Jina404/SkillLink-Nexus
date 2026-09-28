@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { brand } from "@/data/navigation";
+import { CalScheduler } from "@/components/booking/CalScheduler";
 
 const companySizes = [
   "1–10",
@@ -87,6 +88,19 @@ function buildLead(data: FormData): Lead {
   };
 }
 
+function parseCalLink(base: string): { calLink: string } | null {
+  try {
+    const url = new URL(base);
+    const isCal = url.hostname === "cal.com" || url.hostname.endsWith(".cal.com");
+    const calLink = url.pathname.replace(/^\/+|\/+$/g, "");
+    return isCal && calLink ? { calLink } : null;
+  } catch {
+    return null;
+  }
+}
+
+const calTarget = parseCalLink(schedulerUrl);
+
 function buildSchedulerSrc(base: string, lead: Lead): string {
   let url: URL;
   try {
@@ -117,6 +131,11 @@ function buildSchedulerSrc(base: string, lead: Lead): string {
 export default function GetAnEAPage() {
   const [submitted, setSubmitted] = useState(false);
   const [lead, setLead] = useState<Lead | null>(null);
+  const isScheduling = lead !== null;
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, [isScheduling]);
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -131,7 +150,7 @@ export default function GetAnEAPage() {
 
   if (lead) {
     return (
-      <main className="page-shell book-page">
+      <main className="page-shell book-page is-scheduling">
         <div className="book-card is-scheduling">
           <header className="book-header">
             <h1>Pick a time for your call{lead.firstName ? `, ${lead.firstName}` : ""}</h1>
@@ -146,14 +165,25 @@ export default function GetAnEAPage() {
             </p>
           </header>
 
-          <div className="book-scheduler">
-            <iframe
-              src={buildSchedulerSrc(schedulerUrl, lead)}
-              title="Schedule a call with SkillLink Nexus"
-              loading="lazy"
-              allow="fullscreen"
-            />
-          </div>
+          {calTarget ? (
+            <div className="book-scheduler is-cal">
+              <CalScheduler
+                calLink={calTarget.calLink}
+                name={lead.fullName}
+                email={lead.email}
+                notes={lead.notes}
+              />
+            </div>
+          ) : (
+            <div className="book-scheduler">
+              <iframe
+                src={buildSchedulerSrc(schedulerUrl, lead)}
+                title="Schedule a call with SkillLink Nexus"
+                loading="lazy"
+                allow="fullscreen"
+              />
+            </div>
+          )}
 
           <div className="book-scheduler-foot">
             <button type="button" className="btn btn-outline" onClick={() => setLead(null)}>
@@ -286,7 +316,7 @@ export default function GetAnEAPage() {
         )}
 
         <p className="book-legal">
-          By continuing you agree to our <Link href="/security">Privacy Policy</Link>.
+          By continuing you agree to our <Link href="/privacy">Privacy Policy</Link>.
         </p>
       </div>
     </main>

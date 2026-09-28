@@ -1507,6 +1507,7 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   width: 56px;
   height: 56px;
   border-radius: 50%;
+  object-fit: cover;
   background: linear-gradient(145deg, #cfe8c8, #e8f5e6);
   border: 1px solid var(--line);
   flex-shrink: 0;
@@ -1515,15 +1516,6 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
 .assistant-top h4 {
   margin: 0 0 4px;
   font-size: 1.05rem;
-}
-
-.assistant-match {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--brand);
 }
 
 .assistant-specialty {
@@ -2342,20 +2334,6 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   margin-top: 2px;
 }
 
-.placeholder-pill {
-  display: inline-flex;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  background: var(--surface-soft);
-  border: 1px solid var(--line);
-  padding: 0.2rem 0.5rem;
-  border-radius: var(--radius-pill);
-  width: fit-content;
-}
-
 /* Resources */
 .topic-row {
   display: flex;
@@ -2762,18 +2740,33 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   text-decoration: underline;
 }
 
+.book-page.is-scheduling {
+  align-items: flex-start;
+  padding-top: clamp(12px, 2.5vh, 28px);
+  padding-bottom: clamp(12px, 2.5vh, 28px);
+}
+
 .book-card.is-scheduling {
-  max-width: 920px;
+  max-width: 720px;
+  padding: 18px 20px 16px;
+}
+
+.book-card.is-scheduling .book-header h1 {
+  font-size: 1.3rem;
+}
+
+.book-card.is-scheduling .book-header p {
+  margin-top: 4px;
+  font-size: 0.88rem;
 }
 
 .book-scheduler {
-  margin-top: 18px;
+  margin-top: 12px;
   border: 1px solid var(--line);
-  border-radius: 14px;
+  border-radius: 12px;
   overflow: hidden;
   background: #fff;
-  height: min(760px, calc(100dvh - var(--nav-h) - 220px));
-  min-height: 560px;
+  height: clamp(420px, calc(100dvh - var(--nav-h) - 200px), 640px);
 }
 
 .book-scheduler iframe {
@@ -2783,8 +2776,21 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   border: 0;
 }
 
+.book-scheduler.is-cal {
+  height: auto;
+  min-height: 320px;
+  border: 0;
+  border-radius: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.book-cal-embed {
+  width: 100%;
+}
+
 .book-scheduler-foot {
-  margin-top: 14px;
+  margin-top: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -2796,6 +2802,51 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   color: var(--brand);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+@media (max-width: 640px) {
+  .book-page.is-scheduling {
+    padding: 0;
+    background: #fff;
+  }
+
+  .book-card.is-scheduling {
+    max-width: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 18px 14px 20px;
+  }
+
+  .book-card.is-scheduling .book-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .book-scheduler {
+    margin: 14px -14px 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    height: calc(100dvh - var(--nav-h) - 150px);
+    min-height: 460px;
+  }
+
+  .book-scheduler.is-cal {
+    margin: 12px 0 0;
+    height: auto;
+    min-height: 320px;
+  }
+
+  .book-scheduler-foot {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .book-scheduler-foot .btn {
+    width: 100%;
+  }
 }
 
 .book-success {
@@ -2837,7 +2888,18 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   }
 
   .phone-field {
-    grid-template-columns: 64px minmax(0, 1fr);
+    grid-template-columns: 76px minmax(0, 1fr);
+  }
+
+  .book-card .form-field input,
+  .book-card .form-field select,
+  .book-card .form-field textarea {
+    font-size: 16px;
+    min-height: 46px;
+  }
+
+  .book-submit {
+    min-height: 48px;
   }
 }
 
@@ -2912,20 +2974,40 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   color: var(--ink);
 }
 
-/* ---------- Careers ---------- */
-.careers-hero {
-  background:
-    radial-gradient(ellipse 80% 60% at 90% 10%, rgba(143, 0, 225, 0.12), transparent 55%),
-    linear-gradient(180deg, #f7f2fc 0%, #ffffff 100%);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(40px, 8vw, 72px) 0 clamp(36px, 6vw, 56px);
-}
-
-.careers-hero-inner {
+.prose-page {
   max-width: 720px;
 }
 
-.careers-hero h1 {
+.prose-page h2 {
+  margin: 1.75rem 0 0.65rem;
+  font-size: 1.15rem;
+}
+
+.prose-page p {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.prose-page a {
+  color: var(--brand);
+}
+
+/* ---------- Careers ---------- */
+.careers-hero-wrap.hero-fullbleed {
+  justify-content: flex-start;
+  min-height: auto;
+  padding: calc(var(--nav-h) + clamp(40px, 8vw, 72px)) 0 clamp(36px, 6vw, 56px);
+}
+
+.careers-hero-wrap .careers-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.careers-hero-wrap h1 {
   margin: 0;
   font-size: clamp(2rem, 5vw, 3.1rem);
   letter-spacing: -0.045em;
@@ -2946,6 +3028,15 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 28px;
+}
+
+.careers-hero-wrap .btn-outline {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(8px);
+}
+
+.careers-page > .section-after-hero {
+  padding-top: 8px;
 }
 
 .careers-proof {
