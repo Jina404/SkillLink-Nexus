@@ -12,7 +12,7 @@ export type AssistantProfile = {
 export const assistantProfiles: AssistantProfile[] = [
   {
     id: "a1",
-    name: "Alex R.",
+    name: "Matthew J.",
     photo: "/photo.jpg",
     specialty: "Executive Assistant · Founder & CEO support",
     blurb:
@@ -22,7 +22,7 @@ export const assistantProfiles: AssistantProfile[] = [
   },
   {
     id: "a2",
-    name: "Jordan M.",
+    name: "Mei K.",
     photo: "/photo2.jpg",
     specialty: "Executive Assistant · Finance & operations",
     blurb:
@@ -32,7 +32,7 @@ export const assistantProfiles: AssistantProfile[] = [
   },
   {
     id: "a3",
-    name: "Sam K.",
+    name: "Anthony M.",
     photo: "/photo3.jpg",
     specialty: "EA · Communications & stakeholder work",
     blurb:
