@@ -11,7 +11,7 @@ export default function PricingPage() {
           <h1>Flexible plans for dedicated executive support</h1>
           <p style={{ marginLeft: "auto", marginRight: "auto" }}>
             Transparent monthly pricing for a full-time EA, CSM, and rematch guarantee—starting at
-            $2,999/mo.
+            $2,500/mo.
           </p>
         </div>
       </section>
