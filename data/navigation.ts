@@ -23,7 +23,7 @@ export const primaryNav: {
   { label: "Get outcomes", href: "/for-executives", mega: "outcomes" },
   { label: "Why Us", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Careers", href: "/careers", mega: "find-work" },
+  { label: "Careers", href: "/careers" },
   { label: "Enterprise", href: "/for-businesses" },
 ];
 
