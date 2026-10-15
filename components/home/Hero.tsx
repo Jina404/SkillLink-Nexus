@@ -97,7 +97,7 @@ export function Hero() {
                 aria-selected={audience === "hire"}
                 onClick={() => setAudience("hire")}
               >
-                I want to hire
+                Get an EA
               </button>
               <button
                 type="button"
