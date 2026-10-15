@@ -43,7 +43,7 @@ export function SkillsVideo() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         poster="/skills-poster.jpg"
         src="/skills.mp4"
       />

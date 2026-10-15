@@ -60,7 +60,7 @@ export function Hero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/herosection-poster.jpg"
           src="/herosection.mp4"
         />
@@ -76,7 +76,7 @@ export function Hero() {
               muted
               loop
               playsInline
-              preload="auto"
+              preload="metadata"
               poster="/hero-bg-poster.jpg"
               src="/hero-bg.mp4"
             />
