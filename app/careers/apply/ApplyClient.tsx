@@ -2,18 +2,17 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { FormEvent, useMemo, useState } from "react";
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { brand } from "@/data/navigation";
 import { careersCountries, careersExperienceLevels } from "@/data/careers";
 
 const INTERNSHIP_FORM_URL =
   "https://docs.google.com/forms/u/0/d/e/1FAIpQLSekfwTkXruBRgo9SjPUrcD2CmhHNJYoMlzAfe5e0GB4yfE4Xg/viewform";
 
-const INTERNSHIP_FORM_EMBED_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSekfwTkXruBRgo9SjPUrcD2CmhHNJYoMlzAfe5e0GB4yfE4Xg/viewform?embedded=true";
-
 export function ApplyClient() {
   const [submitted, setSubmitted] = useState(false);
+  const [popupBlocked, setPopupBlocked] = useState(false);
+  const openedRef = useRef(false);
   const searchParams = useSearchParams();
 
   const role = searchParams.get("role") ?? "";
@@ -37,6 +36,19 @@ export function ApplyClient() {
       experienceLabel: "Experience",
       experiencePlaceholder: "Years as EA",
     };
+  }, [isInternship]);
+
+  useEffect(() => {
+    if (!isInternship) return;
+    if (openedRef.current) return;
+    openedRef.current = true;
+
+    const w = window.open(INTERNSHIP_FORM_URL, "_blank", "noopener,noreferrer");
+    if (!w) {
+      // Avoid synchronous setState inside effects (lint rule); schedule for next tick.
+      setTimeout(() => setPopupBlocked(true), 0);
+      return;
+    }
   }, [isInternship]);
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
@@ -67,44 +79,30 @@ export function ApplyClient() {
           <p>{copy.subtitle}</p>
         </header>
 
-        <div className="internship-form-actions">
-          <a
-            href={INTERNSHIP_FORM_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-            className="btn btn-primary"
-          >
-            Open the form in a new tab
-          </a>
-          <p className="internship-form-hint">
-            If you see a cookie prompt in the embed, allow cookies for Google Forms or use the new
-            tab link.
+        <div className="internship-redirect">
+          <p className="internship-redirect-msg">
+            You’ll be redirected to our Google Form in a new tab.
           </p>
+          <p className="internship-redirect-sub">
+            {popupBlocked
+              ? "Your browser blocked the pop-up. Use the button below to open the form."
+              : "If nothing happens, use the button below."}
+          </p>
+          <div className="internship-redirect-actions">
+            <a
+              href={INTERNSHIP_FORM_URL}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="btn btn-primary"
+            >
+              Open internship application form
+            </a>
+            <Link href="/careers" className="btn btn-outline">
+              Back to careers
+            </Link>
+          </div>
         </div>
 
-        <div className="internship-form-embed" aria-label="Internship application form">
-          <iframe
-            title="SkillLink Nexus Internship Application"
-            src={INTERNSHIP_FORM_EMBED_URL}
-            className="internship-form-iframe"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
-
-        <p className="internship-form-fallback">
-          Trouble loading the embed?{" "}
-          <a href={INTERNSHIP_FORM_URL} target="_blank" rel="noreferrer noopener" className="link-arrow">
-            Open the application form
-          </a>
-          .
-        </p>
-
-        <div className="internship-back-link">
-          <Link href="/careers" className="link-arrow">
-            Back to careers
-          </Link>
-        </div>
       </div>
     );
   }

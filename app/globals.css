@@ -3399,15 +3399,6 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   max-width: min(880px, 100%);
 }
 
-.internship-form-embed {
-  margin-top: 18px;
-  width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
-  background: #fff;
-}
-
 .internship-form-actions {
   margin-top: 16px;
   display: grid;
@@ -3423,21 +3414,32 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   max-width: 62ch;
 }
 
-.internship-form-iframe {
-  display: block;
-  width: 100%;
-  height: min(1100px, 78vh);
-  border: 0;
+.internship-redirect {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px 18px 16px;
+  background: #fff;
 }
 
-.internship-form-fallback {
-  margin: 12px 0 0;
+.internship-redirect-msg {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.internship-redirect-sub {
+  margin: 8px 0 0;
   color: var(--ink-soft);
   font-size: 0.92rem;
+  line-height: 1.5;
 }
 
-.internship-back-link {
+.internship-redirect-actions {
   margin-top: 14px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .careers-apply-page {
