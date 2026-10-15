@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   careersBenefits,
   careersFaq,
+  careersInternship,
   careersMission,
   careersProcess,
   careersProof,
@@ -26,6 +27,32 @@ export default function CareersPage() {
             <a href={careersProof.ctaHref} className="link-arrow">
               {careersProof.ctaLabel}
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-tight" id="internships">
+        <div className="container">
+          <div className="cta-band careers-internship">
+            <div className="careers-internship-copy">
+              <p className="eyebrow">{careersInternship.eyebrow}</p>
+              <h2>{careersInternship.title}</h2>
+              <p>{careersInternship.body}</p>
+              <ul className="careers-internship-list">
+                {careersInternship.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <p className="careers-internship-note">{careersInternship.note}</p>
+            </div>
+            <div className="cta-actions">
+              <Link href={careersInternship.primaryCta.href} className="btn btn-primary btn-lg">
+                {careersInternship.primaryCta.label}
+              </Link>
+              <a href={careersInternship.secondaryCta.href} className="btn btn-outline btn-lg">
+                {careersInternship.secondaryCta.label}
+              </a>
+            </div>
           </div>
         </div>
       </section>

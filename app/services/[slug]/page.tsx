@@ -3,7 +3,18 @@ import { notFound } from "next/navigation";
 import { categories, getCategoryBySlug } from "@/data/categories";
 import { getAssistantsByCategory, assistantProfiles } from "@/data/assistantProfiles";
 import { getOfferingsByCategory } from "@/data/services";
-import { categoryIcon } from "@/components/ui/icons";
+import {
+  IconBusiness,
+  IconCalendar,
+  IconHousehold,
+  IconInbox,
+  IconLeadership,
+  IconMeetings,
+  IconProjects,
+  IconResearch,
+  IconTravel,
+  IconWellness,
+} from "@/components/ui/icons";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -13,12 +24,38 @@ export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));
 }
 
+function renderCategoryIcon(icon: string) {
+  switch (icon) {
+    case "calendar":
+      return <IconCalendar />;
+    case "inbox":
+      return <IconInbox />;
+    case "travel":
+      return <IconTravel />;
+    case "meetings":
+      return <IconMeetings />;
+    case "projects":
+      return <IconProjects />;
+    case "research":
+      return <IconResearch />;
+    case "business":
+      return <IconBusiness />;
+    case "household":
+      return <IconHousehold />;
+    case "wellness":
+      return <IconWellness />;
+    case "leadership":
+      return <IconLeadership />;
+    default:
+      return <IconProjects />;
+  }
+}
+
 export default async function ServiceCategoryPage({ params }: Props) {
   const { slug } = await params;
   const category = getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const Icon = categoryIcon(category.icon);
   const offerings = getOfferingsByCategory(slug);
   const assistants =
     getAssistantsByCategory(slug).length > 0
@@ -37,7 +74,7 @@ export default async function ServiceCategoryPage({ params }: Props) {
           </p>
           <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 8 }}>
             <span className="category-icon" style={{ width: 44, height: 44 }}>
-              <Icon />
+              {renderCategoryIcon(category.icon)}
             </span>
             <h1 style={{ margin: 0 }}>{category.name}</h1>
           </div>

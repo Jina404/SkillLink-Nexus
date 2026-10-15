@@ -35,6 +35,20 @@ export const careersMission = {
     "Whether you’re partnering with a CEO or driving the work behind the scenes, you’re helping bring that mission to life.",
 };
 
+export const careersInternship = {
+  eyebrow: "Internships",
+  title: "Launch your career in executive operations.",
+  body: "Join our internship program and learn how high-performing teams run: communication, prioritization, and execution—while supporting real work that matters.",
+  highlights: [
+    "Remote-first, structured mentorship, and weekly feedback",
+    "Real-world projects across operations, scheduling, and client support",
+    "Career pathway to junior EA and ops roles (based on performance)",
+  ],
+  primaryCta: { label: "Apply for internship", href: "/careers/apply?role=internship" },
+  secondaryCta: { label: "See the hiring process", href: "#process" },
+  note: "Rolling applications. If you’re a student or recent grad, this is a great place to start.",
+};
+
 export const careersRoleExplainer = {
   title: "How we make it happen",
   body: "At SkillLink Nexus, we connect startups and executives with dedicated executive assistants—the people who help leaders move faster and smarter. Think founders, CFOs, and operators building big things. You’ll be their right hand: priorities in check, follow-ups on track, and chaos under control.",

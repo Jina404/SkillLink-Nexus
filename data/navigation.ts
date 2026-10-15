@@ -21,9 +21,9 @@ export const primaryNav: {
 }[] = [
   { label: "Services", href: "/services", mega: "services" },
   { label: "Get outcomes", href: "/for-executives", mega: "outcomes" },
-  { label: "Find work", href: "/careers", mega: "find-work" },
   { label: "Why Us", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Careers", href: "/careers", mega: "find-work" },
   { label: "Enterprise", href: "/for-businesses" },
 ];
 

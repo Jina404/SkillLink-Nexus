@@ -1,19 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { FormEvent, useMemo, useState } from "react";
 import { brand } from "@/data/navigation";
 import { careersCountries, careersExperienceLevels } from "@/data/careers";
 
+const INTERNSHIP_FORM_URL =
+  "https://docs.google.com/forms/u/0/d/e/1FAIpQLSekfwTkXruBRgo9SjPUrcD2CmhHNJYoMlzAfe5e0GB4yfE4Xg/viewform";
+
+const INTERNSHIP_FORM_EMBED_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSekfwTkXruBRgo9SjPUrcD2CmhHNJYoMlzAfe5e0GB4yfE4Xg/viewform?embedded=true";
+
 export default function CareersApplyPage() {
   const [submitted, setSubmitted] = useState(false);
+  const searchParams = useSearchParams();
+
+  const role = searchParams.get("role") ?? "";
+  const isInternship = role.toLowerCase() === "internship";
+
+  const copy = useMemo(() => {
+    if (isInternship) {
+      return {
+        title: "Apply for an internship at SkillLink Nexus",
+        subtitle:
+          "Tell us a bit about you. We’ll review your application and follow up with next steps.",
+        subject: "Internship application",
+        experienceLabel: "Experience",
+        experiencePlaceholder: "Years of relevant experience",
+      };
+    }
+    return {
+      title: "Join SkillLink Nexus as an EA",
+      subtitle: "Takes under a minute. We’ll review and follow up with next steps.",
+      subject: "EA application",
+      experienceLabel: "Experience",
+      experiencePlaceholder: "Years as EA",
+    };
+  }, [isInternship]);
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-    const subject = encodeURIComponent("EA application");
+    const subject = encodeURIComponent(copy.subject);
     const body = encodeURIComponent(
       [
+        `Role: ${isInternship ? "Internship" : "Executive Assistant"}`,
         `First name: ${data.get("firstName")}`,
         `Last name: ${data.get("lastName")}`,
         `Email: ${data.get("email")}`,
@@ -27,12 +59,49 @@ export default function CareersApplyPage() {
     setSubmitted(true);
   }
 
+  if (isInternship) {
+    return (
+      <main className="page-shell book-page careers-apply-page">
+        <div className="book-card careers-apply-card careers-internship-apply-card">
+          <header className="book-header">
+            <h1>{copy.title}</h1>
+            <p>{copy.subtitle}</p>
+          </header>
+
+          <div className="internship-form-embed" aria-label="Internship application form">
+            <iframe
+              title="SkillLink Nexus Internship Application"
+              src={INTERNSHIP_FORM_EMBED_URL}
+              className="internship-form-iframe"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          <p className="internship-form-fallback">
+            If the form doesn’t load,{" "}
+            <a href={INTERNSHIP_FORM_URL} target="_blank" rel="noreferrer" className="link-arrow">
+              open it in a new tab
+            </a>
+            .
+          </p>
+
+          <div className="internship-back-link">
+            <Link href="/careers" className="link-arrow">
+              Back to careers
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="page-shell book-page careers-apply-page">
       <div className="book-card careers-apply-card">
         <header className="book-header">
-          <h1>Join SkillLink Nexus as an EA</h1>
-          <p>Takes under a minute. We’ll review and follow up with next steps.</p>
+          <h1>{copy.title}</h1>
+          <p>{copy.subtitle}</p>
         </header>
 
         {submitted ? (
@@ -92,10 +161,10 @@ export default function CareersApplyPage() {
                 </select>
               </div>
               <div className="form-field">
-                <label htmlFor="experience">Experience</label>
+                <label htmlFor="experience">{copy.experienceLabel}</label>
                 <select id="experience" name="experience" required defaultValue="">
                   <option value="" disabled>
-                    Years as EA
+                    {copy.experiencePlaceholder}
                   </option>
                   {careersExperienceLevels.map((level) => (
                     <option key={level} value={level}>

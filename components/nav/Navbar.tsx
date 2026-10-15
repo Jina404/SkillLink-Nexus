@@ -1,11 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { categories } from "@/data/categories";
 import { findWorkLinks, outcomes } from "@/data/howItWorks";
 import { brand, primaryNav, type MegaMenuKind } from "@/data/navigation";
-import { IconArrow, IconChevron, IconSearch } from "@/components/ui/icons";
+import { IconArrow, IconChevron } from "@/components/ui/icons";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -143,13 +144,7 @@ export function Navbar() {
     <header className="site-header">
       <div className="container-wide nav-bar">
         <Link href="/" className="brand-block" aria-label={`${brand.name} home`}>
-          <img
-            src={brand.logo}
-            alt=""
-            className="brand-logo"
-            width={36}
-            height={36}
-          />
+          <Image src={brand.logo} alt="" className="brand-logo" width={36} height={36} />
           <span className="brand-name">
             <span className="brand-name-full">{brand.name}</span>
             <span className="brand-name-short">{brand.shortName}</span>
@@ -175,18 +170,6 @@ export function Navbar() {
             ),
           )}
         </nav>
-
-        <Link href="/services" className="nav-search-combo" aria-label="Search services">
-          <span className="nav-search-left">
-            <IconSearch />
-            Search
-          </span>
-          <span className="nav-search-divider" aria-hidden />
-          <span className="nav-search-right">
-            Services
-            <IconChevron className="chevron" />
-          </span>
-        </Link>
 
         <div className="nav-actions">
           <Link href="/get-an-ea" className="btn btn-primary">
