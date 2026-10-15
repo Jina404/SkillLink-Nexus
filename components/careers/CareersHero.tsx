@@ -38,7 +38,7 @@ export function CareersHero() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           poster="/herosection-poster.jpg"
           src="/herosection.mp4"
         />
