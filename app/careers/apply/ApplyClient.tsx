@@ -67,6 +67,21 @@ export function ApplyClient() {
           <p>{copy.subtitle}</p>
         </header>
 
+        <div className="internship-form-actions">
+          <a
+            href={INTERNSHIP_FORM_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="btn btn-primary"
+          >
+            Open the form in a new tab
+          </a>
+          <p className="internship-form-hint">
+            If you see a cookie prompt in the embed, allow cookies for Google Forms or use the new
+            tab link.
+          </p>
+        </div>
+
         <div className="internship-form-embed" aria-label="Internship application form">
           <iframe
             title="SkillLink Nexus Internship Application"
@@ -78,9 +93,9 @@ export function ApplyClient() {
         </div>
 
         <p className="internship-form-fallback">
-          If the form doesn’t load,{" "}
-          <a href={INTERNSHIP_FORM_URL} target="_blank" rel="noreferrer" className="link-arrow">
-            open it in a new tab
+          Trouble loading the embed?{" "}
+          <a href={INTERNSHIP_FORM_URL} target="_blank" rel="noreferrer noopener" className="link-arrow">
+            Open the application form
           </a>
           .
         </p>
