@@ -11,6 +11,15 @@ import {
 } from "@/data/careers";
 import { CareersHero } from "@/components/careers/CareersHero";
 import { IconArrow } from "@/components/ui/icons";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Join as a Contractor",
+  description:
+    "Join the SkillLink Nexus network of vetted contractors. Get matched to scoped, quoted client projects while we manage the client side.",
+  path: "/careers",
+});
+
 
 export default function CareersPage() {
   return (
@@ -67,7 +76,7 @@ export default function CareersPage() {
             <p className="careers-lead">{careersMission.body}</p>
             <p className="careers-lead muted">{careersMission.highlight}</p>
             <Link href="/careers/apply" className="link-arrow">
-              Apply to join <IconArrow />
+              Join as a contractor <IconArrow />
             </Link>
           </div>
         </div>
@@ -97,7 +106,7 @@ export default function CareersPage() {
         <div className="container">
           <div className="section-heading">
             <h2>Your path to joining</h2>
-            <p>A clear, structured process from application to your first executive match.</p>
+            <p>A clear, structured process from application to your first project.</p>
           </div>
           <ol className="careers-process">
             {careersProcess.map((step, i) => (
@@ -138,8 +147,8 @@ export default function CareersPage() {
       <section className="section section-soft">
         <div className="container">
           <div className="section-heading">
-            <h2>How we take care of our team</h2>
-            <p>Great work and a great life—here’s how we support the people who make SkillLink Nexus what it is.</p>
+            <h2>Why contractors work with us</h2>
+            <p>Here’s how we support the contractors who make SkillLink Nexus what it is.</p>
           </div>
           <div className="careers-benefits-grid">
             {careersBenefits.map((b) => (
@@ -156,7 +165,7 @@ export default function CareersPage() {
         <div className="container">
           <div className="section-heading">
             <h2>Let’s clear things up</h2>
-            <p>Common questions from candidates considering a role at SkillLink Nexus.</p>
+            <p>Common questions from contractors considering SkillLink Nexus.</p>
           </div>
           <div className="careers-faq">
             {careersFaq.map((item) => (
@@ -173,15 +182,15 @@ export default function CareersPage() {
         <div className="container">
           <div className="cta-band careers-cta">
             <div>
-              <h2>Ready to join as an executive assistant?</h2>
+              <h2>Ready to join as a contractor?</h2>
               <p>
-                Apply in minutes. We’ll review your profile and guide you through a structured path
-                to your first match.
+                Apply in minutes. We’ll review your profile and guide you through a clear path to
+                your first project.
               </p>
             </div>
             <div className="cta-actions">
               <Link href="/careers/apply" className="btn btn-primary btn-lg">
-                Apply to join
+                Join as a contractor
               </Link>
               <a href="#process" className="btn btn-outline btn-lg">
                 See the process

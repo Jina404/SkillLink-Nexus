@@ -1,40 +1,17 @@
-"use client";
-
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import {
   brand,
   footerColumns,
   footerLegal,
   footerSocial,
 } from "@/data/navigation";
-import {
-  IconFacebook,
-  IconInstagram,
-  IconLinkedIn,
-  IconX,
-  IconYouTube,
-} from "@/components/ui/icons";
+import { IconLinkedIn } from "@/components/ui/icons";
 
 const socialIcons = {
-  facebook: IconFacebook,
   linkedin: IconLinkedIn,
-  x: IconX,
-  youtube: IconYouTube,
-  instagram: IconInstagram,
 } as const;
 
 export function Footer() {
-  const pathname = usePathname();
-  if (
-    pathname === "/get-an-ea" ||
-    pathname === "/signup" ||
-    pathname === "/login" ||
-    pathname === "/careers/apply"
-  ) {
-    return null;
-  }
-
   return (
     <footer className="site-footer">
       <div className="container">
@@ -45,7 +22,13 @@ export function Footer() {
               <ul>
                 {col.links.map((link) => (
                   <li key={`${col.title}-${link.label}`}>
-                    <Link href={link.href}>{link.label}</Link>
+                    {link.newTab ? (
+                      <a href={link.href} target="_blank" rel="noopener noreferrer">
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href}>{link.label}</Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -64,7 +47,7 @@ export function Footer() {
                     <a
                       key={item.label}
                       href={item.href}
-                      className="footer-social-btn"
+                      className="footer-social-btn icon-bare"
                       target="_blank"
                       rel="noreferrer"
                       aria-label={item.label}
@@ -79,13 +62,19 @@ export function Footer() {
         ) : null}
 
         <div className="footer-bottom">
-          <span>© 2026 {brand.name}</span>
+          <span>© 2026 {brand.legalName} | Reg. No. {brand.regNo}. Tech projects by vetted contractors. Nairobi, Kenya.</span>
           <div className="footer-bottom-links">
-            {footerLegal.map((link) => (
-              <Link key={link.label} href={link.href}>
-                {link.label}
-              </Link>
-            ))}
+            {footerLegal.map((link) =>
+              link.newTab ? (
+                <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              ) : (
+                <Link key={link.label} href={link.href}>
+                  {link.label}
+                </Link>
+              ),
+            )}
           </div>
         </div>
       </div>

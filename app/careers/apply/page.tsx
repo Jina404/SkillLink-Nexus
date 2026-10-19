@@ -1,5 +1,14 @@
 import { Suspense } from "react";
 import { ApplyClient } from "./ApplyClient";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Contractor Application",
+  description:
+    "Apply to join SkillLink Nexus as a vetted contractor. Share your skills and portfolio; it takes a few minutes.",
+  path: "/careers/apply",
+});
+
 
 export default function CareersApplyPage() {
   return (

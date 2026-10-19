@@ -1,34 +1,4 @@
-export type Testimonial = {
-  quote: string;
-  name: string;
-  title: string;
-  company: string;
-};
-
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "I waited longer than I should have to get dedicated support. Once the partnership clicked, the calendar and inbox stopped owning my week.",
-    name: "Maya Chen",
-    title: "Founder & CEO",
-    company: "Northline Analytics",
-  },
-  {
-    quote:
-      "The value showed up in follow-through—meetings prepared, actions tracked, and travel handled without me chasing details.",
-    name: "Daniel Okonkwo",
-    title: "VP of Operations",
-    company: "Brightpath Health",
-  },
-  {
-    quote:
-      "Having a dedicated EA plus a success manager meant the support kept improving instead of plateauing after onboarding.",
-    name: "Priya Mehta",
-    title: "Managing Partner",
-    company: "Harbor & Co.",
-  },
-];
-
+// CONFIRM: these security claims carried over from the previous site. Check they are still true.
 export const securityClaims = [
   {
     title: "ISO 27001-aligned",
@@ -44,6 +14,6 @@ export const securityClaims = [
   },
   {
     title: "No local storage",
-    text: "All work products stay in your systems. Nothing sits on EA devices.",
+    text: "All work products stay in your systems. Nothing sits on contractor devices.",
   },
 ];

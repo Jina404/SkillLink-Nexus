@@ -1,14 +1,20 @@
 import { Hero, PricingInsights } from "@/components/home/Hero";
 import { CategoryExplorer } from "@/components/home/CategoryExplorer";
-import { AssistantCards, ServiceListings } from "@/components/home/ServiceListings";
+import { ServiceListings, VettingCards } from "@/components/home/ServiceListings";
 import { ToolsFluent } from "@/components/home/ToolsFluent";
 import { HowItWorks, MatchingQuiz } from "@/components/home/HowItWorks";
-import {
-  CTABand,
-  HiringOptions,
-  ResourcesSection,
-  TestimonialSection,
-} from "@/components/home/HiringOptions";
+import { CTABand, HiringOptions } from "@/components/home/HiringOptions";
+import { StoriesSection } from "@/components/home/StoriesSection";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "SkillLink Nexus | Managed Tech Projects",
+  absoluteTitle: true,
+  description:
+    "Web, design, content, software, data, cybersecurity and executive support from $150. Vetted contractors, managed by SkillLink Nexus in Nairobi.",
+  path: "/",
+});
+
 
 export default function Home() {
   return (
@@ -20,13 +26,12 @@ export default function Home() {
       <CategoryExplorer />
       <ToolsFluent />
       <ServiceListings />
-      <AssistantCards />
+      <VettingCards />
       <MatchingQuiz />
       <HowItWorks />
       <PricingInsights />
       <HiringOptions />
-      <TestimonialSection />
-      <ResourcesSection />
+      <StoriesSection />
       <CTABand />
     </main>
   );

@@ -1,20 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { categories, getCategoryBySlug } from "@/data/categories";
-import { getAssistantsByCategory, assistantProfiles } from "@/data/assistantProfiles";
-import { getOfferingsByCategory } from "@/data/services";
-import {
-  IconBusiness,
-  IconCalendar,
-  IconHousehold,
-  IconInbox,
-  IconLeadership,
-  IconMeetings,
-  IconProjects,
-  IconResearch,
-  IconTravel,
-  IconWellness,
-} from "@/components/ui/icons";
+import type { Metadata } from "next";
+import { categories, getCategoryBySlug, quoteHref } from "@/data/categories";
+import { pageMetadata } from "@/lib/seo";
+import { VettingCards } from "@/components/home/ServiceListings";
+import { categoryIcon } from "@/components/ui/icons";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -24,31 +14,20 @@ export function generateStaticParams() {
   return categories.map((c) => ({ slug: c.slug }));
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const category = getCategoryBySlug(slug);
+  if (!category) return {};
+  return pageMetadata({
+    title: category.name,
+    description: category.description,
+    path: `/services/${category.slug}`,
+  });
+}
+
 function renderCategoryIcon(icon: string) {
-  switch (icon) {
-    case "calendar":
-      return <IconCalendar />;
-    case "inbox":
-      return <IconInbox />;
-    case "travel":
-      return <IconTravel />;
-    case "meetings":
-      return <IconMeetings />;
-    case "projects":
-      return <IconProjects />;
-    case "research":
-      return <IconResearch />;
-    case "business":
-      return <IconBusiness />;
-    case "household":
-      return <IconHousehold />;
-    case "wellness":
-      return <IconWellness />;
-    case "leadership":
-      return <IconLeadership />;
-    default:
-      return <IconProjects />;
-  }
+  const Icon = categoryIcon(icon);
+  return <Icon size={32} />;
 }
 
 export default async function ServiceCategoryPage({ params }: Props) {
@@ -56,11 +35,6 @@ export default async function ServiceCategoryPage({ params }: Props) {
   const category = getCategoryBySlug(slug);
   if (!category) notFound();
 
-  const offerings = getOfferingsByCategory(slug);
-  const assistants =
-    getAssistantsByCategory(slug).length > 0
-      ? getAssistantsByCategory(slug)
-      : assistantProfiles.slice(0, 3);
 
   return (
     <main className="page-shell">
@@ -73,18 +47,18 @@ export default async function ServiceCategoryPage({ params }: Props) {
             / {category.name}
           </p>
           <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 8 }}>
-            <span className="category-icon" style={{ width: 44, height: 44 }}>
+            <span className="category-icon icon-bare">
               {renderCategoryIcon(category.icon)}
             </span>
             <h1 style={{ margin: 0 }}>{category.name}</h1>
           </div>
           <p>{category.description}</p>
           <div style={{ marginTop: 20, display: "flex", gap: 12, flexWrap: "wrap" }}>
-            <Link href="/get-an-ea" className="btn btn-primary">
-              Get matched
+            <Link href={quoteHref(category.slug)} className="btn btn-primary">
+              Get a quote
             </Link>
             <Link href="/pricing" className="btn btn-outline">
-              See plans
+              See pricing
             </Link>
           </div>
         </div>
@@ -93,72 +67,19 @@ export default async function ServiceCategoryPage({ params }: Props) {
       <section className="section-tight">
         <div className="container">
           <div className="section-heading">
-            <h2>Capabilities</h2>
+            <h2>What we deliver</h2>
           </div>
           <div className="service-grid">
-            {category.services.map((s) => (
-              <div key={s.title} className="service-card">
-                <h4>{s.title}</h4>
-                <p>{s.description}</p>
+            {category.deliverables.map((d) => (
+              <div key={d} className="service-card">
+                <h4>{d}</h4>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {offerings.length > 0 && (
-        <section className="section section-soft">
-          <div className="container">
-            <div className="section-heading">
-              <h2>Service offerings</h2>
-            </div>
-            <div className="service-grid">
-              {offerings.map((o) => (
-                <div key={o.id} className="service-card">
-                  <h4>{o.title}</h4>
-                  <p>{o.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      <section className="section">
-        <div className="container">
-          <div className="section-heading">
-            <h2>Assistants for this specialty</h2>
-            <p>Dedicated EAs experienced in the work this category covers.</p>
-          </div>
-          <div className="assistant-grid">
-            {assistants.map((p) => (
-              <article key={p.id} className="assistant-card">
-                <div className="assistant-top">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img className="assistant-avatar" src={p.photo} alt="" />
-                  <div>
-                    <h4>{p.name}</h4>
-                    <p className="assistant-specialty">{p.specialty}</p>
-                  </div>
-                </div>
-                <p>{p.blurb}</p>
-                <div className="tag-row">
-                  {p.tags.map((t) => (
-                    <span key={t} className="tag">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-          <div style={{ marginTop: 28 }}>
-            <Link href="/get-an-ea" className="btn btn-primary btn-lg">
-              Get started
-            </Link>
-          </div>
-        </div>
-      </section>
+      <VettingCards showButton={false} />
     </main>
   );
 }

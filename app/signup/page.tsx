@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
-/** Old path — book-a-call lives at /get-an-ea. */
+/** Old path: the project form lives at /request-a-project. */
 export default function SignupRedirectPage() {
-  redirect("/get-an-ea");
+  redirect("/request-a-project");
 }

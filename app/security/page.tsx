@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { securityClaims } from "@/data/testimonials";
 import { CTABand } from "@/components/home/HiringOptions";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Security",
+  description:
+    "How SkillLink Nexus protects client access and information: verification, access controls and confidentiality before any work begins.",
+  path: "/security",
+});
+
 
 export default function SecurityPage() {
   return (
@@ -11,7 +20,7 @@ export default function SecurityPage() {
           <h1>Procurement-ready from day one.</h1>
           <p>
             Clear controls, access boundaries, and verification before any work begins—so you can
-            delegate with confidence.
+            share access with confidence.
           </p>
         </div>
       </section>
@@ -27,7 +36,7 @@ export default function SecurityPage() {
             ))}
           </div>
           <div style={{ marginTop: 28 }}>
-            <Link href="/get-an-ea" className="btn btn-primary">
+            <Link href="/contact" className="btn btn-primary">
               Talk to us about security
             </Link>
           </div>

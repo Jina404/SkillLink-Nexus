@@ -1,187 +1,55 @@
-export type ServiceOffering = {
-  id: string;
-  categorySlug: string;
+export type SpecialtyItem = { title: string; description: string };
+
+export type SpecialtyGroup = {
   title: string;
-  description: string;
+  /** "See all" link: the category page this group belongs to. */
   href: string;
+  items: SpecialtyItem[];
 };
 
-/** Structured service listings per category. */
-export const serviceOfferings: ServiceOffering[] = [
+/** Homepage "Everything you need, managed by us." section: 4 groups of 4 cards. */
+export const specialtyGroups: SpecialtyGroup[] = [
   {
-    id: "cal-1",
-    categorySlug: "calendar-scheduling",
-    title: "Executive Calendar Managers",
-    description: "Own the week, clear conflicts, and protect focus time across leaders.",
-    href: "/services/calendar-scheduling",
+    title: "Build",
+    href: "/services/web-development",
+    items: [
+      { title: "Landing pages", description: "One focused page, built to turn visitors into leads." },
+      { title: "Business sites", description: "A clear, fast site that explains what you do." },
+      { title: "Online stores", description: "Product pages, cart and checkout, ready to sell." },
+      { title: "Mobile apps", description: "Apps for Android and iOS, built to your brief." },
+    ],
   },
   {
-    id: "cal-2",
-    categorySlug: "calendar-scheduling",
-    title: "Scheduling Specialists",
-    description: "Book the right people fast—across time zones and preferences.",
-    href: "/services/calendar-scheduling",
+    title: "Brand and content",
+    href: "/services/brand-design",
+    items: [
+      { title: "Logos and brand kits", description: "A logo, colors and fonts that keep your brand consistent." },
+      { title: "Social posts", description: "Posts written and designed for your channels." },
+      { title: "Short videos", description: "Promos and explainers, edited and ready to share." },
+      { title: "Pitch decks", description: "Clear, well-designed slides for your next pitch." },
+    ],
   },
   {
-    id: "cal-3",
-    categorySlug: "calendar-scheduling",
-    title: "Meeting Coordinators",
-    description: "Agendas, rooms, and logistics so meetings start ready.",
-    href: "/services/calendar-scheduling",
+    title: "Data and security",
+    href: "/services/data-analytics",
+    items: [
+      { title: "Dashboards and reports", description: "Your key numbers in one clear, repeatable view." },
+      { title: "Data cleanup", description: "Messy data cleaned, organized and ready to use." },
+      {
+        title: "Penetration testing",
+        description: "Weaknesses found first, with tests run only with your written authorisation.",
+      },
+      { title: "Vulnerability assessments", description: "Known issues found, ranked and explained." },
+    ],
   },
   {
-    id: "cal-4",
-    categorySlug: "calendar-scheduling",
-    title: "Executive Support Specialists",
-    description: "Calendar plus light ops for leaders who need one owner.",
-    href: "/services/calendar-scheduling",
-  },
-  {
-    id: "inbox-1",
-    categorySlug: "inbox-communications",
-    title: "Inbox Managers",
-    description: "Daily triage, drafts in your voice, and clear escalation rules.",
-    href: "/services/inbox-communications",
-  },
-  {
-    id: "inbox-2",
-    categorySlug: "inbox-communications",
-    title: "Communications Specialists",
-    description: "Stakeholder threads, follow-ups, and relationship continuity.",
-    href: "/services/inbox-communications",
-  },
-  {
-    id: "inbox-3",
-    categorySlug: "inbox-communications",
-    title: "Executive Correspondence Leads",
-    description: "High-stakes drafting and review before anything leaves your name.",
-    href: "/services/inbox-communications",
-  },
-  {
-    id: "inbox-4",
-    categorySlug: "inbox-communications",
-    title: "Stakeholder Coordinators",
-    description: "Keep the right people informed without flooding your day.",
-    href: "/services/inbox-communications",
-  },
-  {
-    id: "travel-1",
-    categorySlug: "travel-events",
-    title: "Travel Coordinators",
-    description: "Flights, hotels, and ground—booked to your standards.",
-    href: "/services/travel-events",
-  },
-  {
-    id: "travel-2",
-    categorySlug: "travel-events",
-    title: "Event Planners",
-    description: "Offsites, dinners, and conferences run end to end.",
-    href: "/services/travel-events",
-  },
-  {
-    id: "travel-3",
-    categorySlug: "travel-events",
-    title: "Itinerary Specialists",
-    description: "Day-by-day plans with buffers so travel does not cost recovery days.",
-    href: "/services/travel-events",
-  },
-  {
-    id: "travel-4",
-    categorySlug: "travel-events",
-    title: "Executive Travel Managers",
-    description: "Complex multi-leg trips plus expense cleanup on return.",
-    href: "/services/travel-events",
-  },
-  {
-    id: "meet-1",
-    categorySlug: "meetings-reporting",
-    title: "Meeting Coordinators",
-    description: "Prep, notes, and action tracking that create progress.",
-    href: "/services/meetings-reporting",
-  },
-  {
-    id: "meet-2",
-    categorySlug: "meetings-reporting",
-    title: "Reporting Specialists",
-    description: "Status packs and updates without the last-minute scramble.",
-    href: "/services/meetings-reporting",
-  },
-  {
-    id: "meet-3",
-    categorySlug: "meetings-reporting",
-    title: "Board Prep Assistants",
-    description: "Materials, logistics, and follow-ups for board cycles.",
-    href: "/services/meetings-reporting",
-  },
-  {
-    id: "meet-4",
-    categorySlug: "meetings-reporting",
-    title: "Executive Ops Partners",
-    description: "Meeting systems plus light project follow-through.",
-    href: "/services/meetings-reporting",
-  },
-  {
-    id: "proj-1",
-    categorySlug: "projects-operations",
-    title: "Operations Coordinators",
-    description: "Recurring workflows and vendor loops that stay alive.",
-    href: "/services/projects-operations",
-  },
-  {
-    id: "proj-2",
-    categorySlug: "projects-operations",
-    title: "Project Assistants",
-    description: "Deadlines, owners, and cross-team coordination.",
-    href: "/services/projects-operations",
-  },
-  {
-    id: "proj-3",
-    categorySlug: "projects-operations",
-    title: "Vendor Managers",
-    description: "Sourcing, negotiation follow-up, and relationship hygiene.",
-    href: "/services/projects-operations",
-  },
-  {
-    id: "proj-4",
-    categorySlug: "projects-operations",
-    title: "Executive Ops Specialists",
-    description: "Projects plus process documentation for scaling teams.",
-    href: "/services/projects-operations",
-  },
-  {
-    id: "res-1",
-    categorySlug: "research-documents",
-    title: "Research Specialists",
-    description: "Decision-ready briefs instead of raw link dumps.",
-    href: "/services/research-documents",
-  },
-  {
-    id: "res-2",
-    categorySlug: "research-documents",
-    title: "Document Managers",
-    description: "File systems and data rooms you can actually search.",
-    href: "/services/research-documents",
-  },
-  {
-    id: "res-3",
-    categorySlug: "research-documents",
-    title: "Brief Writers",
-    description: "Concise packs for meetings, investors, and hiring.",
-    href: "/services/research-documents",
-  },
-  {
-    id: "res-4",
-    categorySlug: "research-documents",
-    title: "Knowledge Coordinators",
-    description: "Keep institutional knowledge organized as the team grows.",
-    href: "/services/research-documents",
+    title: "Executive support",
+    href: "/services/executive-virtual-assistance",
+    items: [
+      { title: "Calendar and scheduling", description: "Your week organized and meetings booked." },
+      { title: "Inbox management", description: "Messages sorted so only what needs you reaches you." },
+      { title: "Travel and events", description: "Trips and events arranged end to end." },
+      { title: "Meetings and reporting", description: "Agendas, notes and follow-up actions tracked." },
+    ],
   },
 ];
-
-export function getOfferingsByCategory(slug: string): ServiceOffering[] {
-  return serviceOfferings.filter((o) => o.categorySlug === slug);
-}
-
-export function getFeaturedOfferings(limit = 8): ServiceOffering[] {
-  return serviceOfferings.slice(0, limit);
-}

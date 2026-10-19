@@ -7,18 +7,15 @@ export function CategoryExplorer() {
     <section className="section section-after-hero">
       <div className="container">
         <div className="section-heading">
-          <h2>Executive support for every kind of workday</h2>
-          <p>
-            Browse by the work you want off your plate—calendar, inbox, travel, ops, and full-life
-            support.
-          </p>
+          <h2>Tech services for every kind of project</h2>
+          <p>Written quotes. Vetted contractors. Managed by SkillLink Nexus.</p>
         </div>
         <div className="category-grid">
           {categories.map((cat) => {
             const Icon = categoryIcon(cat.icon);
             return (
               <Link key={cat.slug} href={`/services/${cat.slug}`} className="category-card">
-                <span className="category-icon">
+                <span className="category-icon icon-bare">
                   <Icon />
                 </span>
                 <strong>{cat.name}</strong>

@@ -7,6 +7,7 @@ import { categories } from "@/data/categories";
 import { findWorkLinks, outcomes } from "@/data/howItWorks";
 import { brand, primaryNav, type MegaMenuKind } from "@/data/navigation";
 import { IconArrow, IconChevron } from "@/components/ui/icons";
+import { BookCallButton } from "@/components/booking/BookCallButton";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -53,10 +54,9 @@ export function Navbar() {
             <div className="mega-content">
               <div className="mega-content-label">{active.name}</div>
               <div className="mega-grid">
-                {active.services.map((s) => (
-                  <Link key={s.title} href={`/services/${active.slug}`} className="mega-link">
-                    <strong>{s.title}</strong>
-                    <span>{s.description}</span>
+                {active.deliverables.map((d) => (
+                  <Link key={d} href={`/services/${active.slug}`} className="mega-link">
+                    <strong>{d}</strong>
                   </Link>
                 ))}
               </div>
@@ -65,8 +65,8 @@ export function Navbar() {
               <Link href="/services">
                 See all services <IconArrow />
               </Link>
-              <Link href="/get-an-ea">
-                Get matched <IconArrow />
+              <Link href="/request-a-project">
+                Submit a project <IconArrow />
               </Link>
               <Link href="/how-it-works">
                 Ways to work with us <IconArrow />
@@ -82,8 +82,8 @@ export function Navbar() {
         <div className="mega-panel mega-simple" role="region" aria-label="Outcomes menu">
           <div className="mega-simple-body">
             <div className="mega-intro">
-              <h3>Drive larger-scale support</h3>
-              <p>Build dedicated executive capacity for complex, ongoing work.</p>
+              <h3>Get projects done</h3>
+              <p>Scoped, priced and delivered by vetted contractors.</p>
             </div>
             <div>
               <div className="mega-content-label">Outcomes</div>
@@ -99,10 +99,10 @@ export function Navbar() {
           </div>
           <div className="mega-footer">
             <Link href="/for-executives">
-              For executives <IconArrow />
+              Get projects done <IconArrow />
             </Link>
             <Link href="/for-businesses">
-              For businesses <IconArrow />
+              For organizations <IconArrow />
             </Link>
           </div>
         </div>
@@ -113,8 +113,8 @@ export function Navbar() {
       <div className="mega-panel mega-simple" role="region" aria-label="Find work menu">
         <div className="mega-simple-body mega-simple-body-solo">
           <div className="mega-intro">
-            <h3>Join as an executive assistant</h3>
-            <p>Build a career supporting ambitious leaders—with training and match support.</p>
+            <h3>Join as a contractor</h3>
+            <p>Get matched to projects that fit your skills. We handle the client side.</p>
           </div>
           <div>
             <div className="mega-content-label">Ways to join</div>
@@ -130,10 +130,10 @@ export function Navbar() {
         </div>
         <div className="mega-footer">
           <Link href="/careers">
-            Browse careers <IconArrow />
+            For contractors <IconArrow />
           </Link>
           <Link href="/careers/apply">
-            Apply to join <IconArrow />
+            Join as a contractor <IconArrow />
           </Link>
         </div>
       </div>
@@ -172,8 +172,9 @@ export function Navbar() {
         </nav>
 
         <div className="nav-actions">
-          <Link href="/get-an-ea" className="btn btn-primary">
-            Get an EA
+          <BookCallButton className="btn btn-outline nav-book-call" />
+          <Link href="/request-a-project" className="btn btn-primary">
+            Start a project
           </Link>
           <button
             type="button"
@@ -213,13 +214,9 @@ export function Navbar() {
                         {cat.name}
                       </Link>
                       <div className="mobile-sub">
-                        {cat.services.slice(0, 4).map((s) => (
-                          <Link
-                            key={s.title}
-                            href={`/services/${cat.slug}`}
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {s.title}
+                        {cat.deliverables.slice(0, 4).map((d) => (
+                          <Link key={d} href={`/services/${cat.slug}`} onClick={() => setMobileOpen(false)}>
+                            {d}
                           </Link>
                         ))}
                       </div>
@@ -259,8 +256,9 @@ export function Navbar() {
           ),
         )}
         <div className="mobile-actions">
-          <Link href="/get-an-ea" className="btn btn-primary btn-block" onClick={() => setMobileOpen(false)}>
-            Get an EA
+          <BookCallButton className="btn btn-outline btn-block" onClick={() => setMobileOpen(false)} />
+          <Link href="/request-a-project" className="btn btn-primary btn-block" onClick={() => setMobileOpen(false)}>
+            Start a project
           </Link>
         </div>
       </div>

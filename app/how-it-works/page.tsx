@@ -1,6 +1,15 @@
 import Link from "next/link";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { CTABand } from "@/components/home/HiringOptions";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "How It Works",
+  description:
+    "Tell us what you need, get a written quote, and we match and manage a vetted contractor. Every deliverable is reviewed before it reaches you.",
+  path: "/how-it-works",
+});
+
 
 export default function HowItWorksPage() {
   return (
@@ -8,10 +17,10 @@ export default function HowItWorksPage() {
       <section className="page-hero">
         <div className="container">
           <p className="eyebrow">How it works</p>
-          <h1>Built around fit, clarity, and speed.</h1>
+          <h1>Built around scope, price and delivery.</h1>
           <p>
-            Every engagement starts with understanding how you work—then matching you with a
-            dedicated executive assistant who can support it immediately.
+            Every project starts with a clear scope and a written quote—then a vetted contractor
+            whose skills fit the work.
           </p>
         </div>
       </section>
@@ -23,25 +32,26 @@ export default function HowItWorksPage() {
           </div>
           <div className="service-grid">
             <div className="service-card">
-              <h4>Time to live</h4>
-              <p>Most executives are onboarded and working with their EA within about 24 hours.</p>
+              <h4>Price up front</h4>
+              <p>A written quote for your exact scope before any work starts. No hourly billing.</p>
             </div>
             <div className="service-card">
-              <h4>Managed partnership</h4>
-              <p>A dedicated CSM stays involved so the relationship compounds—not plateaus.</p>
+              <h4>Managed delivery</h4>
+              <p>We handle communication and deadlines, so you are not managing a freelancer.</p>
             </div>
             <div className="service-card">
-              <h4>Rematch guarantee</h4>
-              <p>If the fit isn’t strong, we rematch at no additional cost.</p>
+              {/* CONFIRM: delivery guarantee (revisions included, redo or refund). */}
+              <h4>Delivery guarantee</h4>
+              <p>Revisions are included. If the result misses the brief, we make it right.</p>
             </div>
             <div className="service-card">
-              <h4>AI + judgment</h4>
-              <p>Assistants use modern tools for speed, and apply human judgment where it matters.</p>
+              <h4>Vetted contractors</h4>
+              <p>Contractors are assessed on their skills before they are matched to any project.</p>
             </div>
           </div>
           <div style={{ marginTop: 28 }}>
-            <Link href="/get-an-ea" className="btn btn-primary btn-lg">
-              Get matched
+            <Link href="/request-a-project" className="btn btn-primary btn-lg">
+              Submit a project
             </Link>
           </div>
         </div>

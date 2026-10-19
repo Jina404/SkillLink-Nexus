@@ -1,48 +1,37 @@
-export type ToolItem = {
+export type Partner = {
   name: string;
-  domain: string;
-  /** Optional Simple Icons slug for crisp SVG when available */
-  icon?: string;
+  src: string;
+  width: number;
+  height: number;
+  /**
+   * File height ÷ artwork height. Each file has a different amount of empty space
+   * around the logo, so this keeps the visible logos the same height.
+   */
+  artScale: number;
+  alt: string;
 };
 
-export const toolsSection = {
-  title: "Fluent in the tools your team already uses",
-  lines: [
-    "AI-native executive support.",
-    "Whatever stack your team runs on, our EAs already know it. Onboarding takes hours, not weeks.",
-  ],
+export const partnersSection = {
+  title: "Supporting Partners",
+  subtitle: "The institutions and organizations that back our work.",
 };
 
-export const toolRows: ToolItem[][] = [
-  [
-    { name: "HubSpot", domain: "hubspot.com", icon: "hubspot" },
-    { name: "Salesforce", domain: "salesforce.com", icon: "salesforce" },
-    { name: "Jira", domain: "atlassian.com", icon: "jira" },
-    { name: "Notion", domain: "notion.so", icon: "notion" },
-    { name: "Slack", domain: "slack.com", icon: "slack" },
-    { name: "Google Workspace", domain: "workspace.google.com", icon: "google" },
-    { name: "MS Office", domain: "microsoft.com", icon: "microsoftoffice" },
-  ],
-  [
-    { name: "Zoom AI", domain: "zoom.us", icon: "zoom" },
-    { name: "Calendly", domain: "calendly.com", icon: "calendly" },
-    { name: "OpenAI", domain: "openai.com", icon: "openai" },
-    { name: "Claude", domain: "anthropic.com", icon: "anthropic" },
-    { name: "Gemini", domain: "gemini.google.com", icon: "googlegemini" },
-    { name: "Copilot", domain: "copilot.microsoft.com", icon: "microsoftcopilot" },
-    { name: "Granola", domain: "granola.ai" },
-  ],
-  [
-    { name: "Fireflies.ai", domain: "fireflies.ai" },
-    { name: "Zapier", domain: "zapier.com", icon: "zapier" },
-    { name: "Make", domain: "make.com", icon: "make" },
-    { name: "Lovable", domain: "lovable.dev" },
-  ],
+// Width and height are each file's own pixel size, so the logos keep their proportions.
+export const partners: Partner[] = [
+  {
+    name: "MasterCard Foundation",
+    src: "/partners/mastercard.png",
+    width: 450,
+    height: 416,
+    artScale: 1.22, // artwork is 341 of 416px tall
+    alt: "MasterCard Foundation logo",
+  },
+  {
+    name: "USIU Incubation & Innovation Center",
+    src: "/partners/usiu.png",
+    width: 3000,
+    height: 1228,
+    artScale: 1.07, // artwork is 1144 of 1228px tall
+    alt: "USIU Incubation & Innovation Center logo",
+  },
 ];
-
-export function toolLogoSrc(tool: ToolItem) {
-  if (tool.icon) {
-    return `https://cdn.simpleicons.org/${tool.icon}`;
-  }
-  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(tool.domain)}&sz=128`;
-}

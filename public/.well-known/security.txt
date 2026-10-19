@@ -1,0 +1,4 @@
+Contact: mailto:hello@skilllinknexus.com
+Expires: 2027-10-18T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.skilllinknexus.com/.well-known/security.txt

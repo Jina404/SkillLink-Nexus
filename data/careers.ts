@@ -19,53 +19,54 @@ export type CareerStep = {
 };
 
 export const careersHero = {
-  eyebrow: "Careers at SkillLink Nexus",
-  title: "Welcome to your next favorite job.",
+  eyebrow: "For contractors",
+  title: "Do great work. We handle the rest.",
   subtitle:
-    "Work from anywhere, drive change, and grow with purpose—as an executive assistant supporting ambitious leaders.",
-  primaryCta: { label: "Apply to join", href: "/careers/apply" },
+    "Get matched to projects that fit your skills. We scope the work, manage the client and check quality before delivery.",
+  primaryCta: { label: "Join as a contractor", href: "/careers/apply" },
   secondaryCta: { label: "See how it works", href: "#process" },
 };
 
 export const careersMission = {
   eyebrow: "Our mission",
   title: "Powered by purpose. Driven by people.",
-  body: "We create meaningful career opportunities by connecting skilled executive assistants with startups and leaders who need leverage—tackling inequality at its root: access to opportunity.",
+  body: "We connect skilled and vetted contractors with organizations that need work built, designed or analyzed—and we manage every project from brief to delivery.",
+  // CONFIRM: founder to confirm the "more than 60" figure before publishing.
   highlight:
-    "Whether you’re partnering with a CEO or driving the work behind the scenes, you’re helping bring that mission to life.",
+    "More than 60 people have benefited from paid opportunities through SkillLink. Every project you deliver helps that number grow.",
 };
 
+// CONFIRM: check this program still runs and that the details below are accurate.
 export const careersInternship = {
   eyebrow: "Internships",
-  title: "Launch your career in executive operations.",
+  title: "Launch your career in tech services.",
   body: "Join our internship program and learn how high-performing teams run: communication, prioritization, and execution—while supporting real work that matters.",
   highlights: [
     "Remote-first, structured mentorship, and weekly feedback",
-    "Real-world projects across operations, scheduling, and client support",
-    "Career pathway to junior EA and ops roles (based on performance)",
+    "Real-world projects alongside our vetted contractors",
   ],
   primaryCta: { label: "Apply for internship", href: "/careers/apply?role=internship" },
-  secondaryCta: { label: "See the hiring process", href: "#process" },
-  note: "Rolling applications. If you’re a student or recent grad, this is a great place to start.",
+  secondaryCta: { label: "See the joining process", href: "#process" },
+  note: "Rolling applications. If you’re early in your career, this is a great place to start.",
 };
 
 export const careersRoleExplainer = {
   title: "How we make it happen",
-  body: "At SkillLink Nexus, we connect startups and executives with dedicated executive assistants—the people who help leaders move faster and smarter. Think founders, CFOs, and operators building big things. You’ll be their right hand: priorities in check, follow-ups on track, and chaos under control.",
+  body: "SkillLink Nexus sells finished work, not hours. A client tells us what they need. We scope it, agree a written quote and match a vetted contractor whose skills fit. You focus on the work. We manage communication and deadlines.",
   resources: [
     {
-      title: "What does an EA actually do?",
-      description: "Calendar, inbox, travel, ops—and the judgment that ties it together.",
+      title: "What kind of work is there?",
+      description: "Websites, brand and design, content and video, data and reports.",
       href: "/services",
     },
     {
-      title: "What’s the recruitment process like?",
-      description: "From application to match—clear steps, clear feedback.",
+      title: "What’s the joining process like?",
+      description: "From application to first project—clear steps, clear feedback.",
       href: "#process",
     },
     {
-      title: "How matching works for assistants",
-      description: "How we pair you with executives whose pace fits yours.",
+      title: "How matching works for contractors",
+      description: "How we match you to projects that fit your skills.",
       href: "/how-it-works",
     },
   ],
@@ -75,22 +76,23 @@ export const careersProcess: CareerStep[] = [
   {
     title: "Apply",
     description:
-      "Share your experience, strengths, and the countries you’re eligible to work from. Takes about 10 minutes.",
+      "Share your skills, your portfolio and the work you do best. It takes a few minutes.",
   },
   {
-    title: "Skills & culture screen",
+    title: "Skills assessment",
     description:
-      "We review English fluency, executive support craft, and values fit—then invite strong candidates forward.",
+      "We assess your skills before you are matched to any project.",
   },
   {
-    title: "Live assessment",
+    // CONFIRM: vetting steps (paid test project, portfolio review, senior review).
+    title: "Portfolio and test project",
     description:
-      "A practical exercise that mirrors real EA work: prioritization, communication, and calm under pressure.",
+      "We review your portfolio, and you complete a paid test project that gets a senior review.",
   },
   {
-    title: "Match & onboard",
+    title: "Match and deliver",
     description:
-      "We match you with an executive, set up tools and access, and support kickoff so you start strong.",
+      "We match you to a project that fits your skills and manage the client side, so you can focus on the work.",
   },
 ];
 
@@ -118,105 +120,68 @@ export const careersValues: CareerValue[] = [
   {
     title: "Customer obsession",
     description:
-      "We stay committed to understanding and delighting the executives and teams we support.",
+      "We stay committed to understanding and delighting the clients and teams we deliver for.",
   },
 ];
 
 export const careersBenefits: CareerBenefit[] = [
   {
-    title: "Compensation package",
+    title: "Projects that fit your skills",
     description:
-      "Clear monthly pay, regular compensation reviews, and performance bonuses—recognition built into how we operate.",
+      "Contractors are assessed on their skills first, then matched to projects where those skills count.",
   },
   {
-    title: "Global health coverage",
+    title: "Clear briefs",
     description:
-      "Insurance that supports you wherever you are—routine care, dental, vision, and mental health included.",
+      "Every project is scoped and priced before it reaches you, so you know what done looks like.",
   },
   {
-    title: "Growth opportunities",
+    title: "We manage the client",
     description:
-      "Feedback, mentorship, and real chances to stretch—sharpen skills or step into broader scope.",
+      "We handle communication and deadlines with the client, so you can focus on the work.",
   },
   {
-    title: "PTO that respects life",
+    title: "Quality review",
     description:
-      "Paid time off, sick days, family care days, parental leave, and time to disconnect and recharge.",
+      "We check quality before delivery. Every finished project builds your track record.",
   },
   {
-    title: "Work–life balance",
+    title: "Paid opportunities",
+    // CONFIRM: founder to confirm the "more than 60" figure before publishing.
     description:
-      "Fixed schedules, no weekends or overtime by default. When you log off, you actually log off.",
+      "More than 60 people have benefited from paid opportunities through SkillLink.",
   },
   {
-    title: "World-class culture",
-    description:
-      "Celebrate wins, share feedback openly, and stay connected—collaborative, human, and purposeful.",
+    title: "Agreed project prices",
+    description: "The price is agreed before you start. Paid after client approval.",
   },
 ];
 
 export const careersFaq: CareerFaq[] = [
   {
-    question: "Do I need to be in a specific country to apply?",
-    answer:
-      "Most EA roles are open across select LATAM countries (for example Nicaragua, Colombia, Costa Rica, Honduras, El Salvador, Ecuador, Mexico, and Guatemala). Some roles welcome applicants more broadly—check the job description for eligibility.",
+    question: "Where is SkillLink Nexus based?",
+    answer: "SkillLink Nexus is based in Nairobi, Kenya.",
   },
   {
-    question: "What’s the schedule like?",
+    question: "How do deadlines work?",
     answer:
-      "We typically work a fixed schedule (often aligned to your local business hours or the executive’s timezone needs). No weekends or overtime by default—so when you log off, the rest of the day is yours.",
+      "Every project has agreed deadlines. We manage client communication so you can plan your time around them.",
   },
   {
-    question: "Is this remote?",
+    question: "What happens if I’m not matched right away?",
     answer:
-      "Yes—roles are fully remote. You’ll stay connected through team rituals, shared wins, and clear communication channels.",
+      "We’ll get back to you either way. If it isn’t the right fit now, that doesn’t mean never—we love staying in touch for future projects.",
   },
   {
-    question: "Do all roles require English?",
+    question: "How are contractors assessed?",
     answer:
-      "Yes. English is our main working language. You’ll need to be fluent and comfortable communicating with executives and teammates.",
-  },
-  {
-    question: "What happens if I don’t get the role?",
-    answer:
-      "We’ll get back to you either way. If it isn’t the right fit now, that doesn’t mean never—we grow fast and love staying in touch for future matches.",
-  },
-  {
-    question: "Do you only hire women?",
-    answer:
-      "No. We’re focused on expanding opportunity for underrepresented talent while building the strongest team possible—and we hire people of all genders.",
-  },
-  {
-    question: "Do you provide work equipment?",
-    answer:
-      "After probation (about eight weeks), we typically set you up with company equipment. Until then, you’ll use your own computer to get started.",
+      "Contractors are assessed on their skills before they are matched to any project.",
   },
 ];
 
 export const careersProof = {
-  label: "Built for long-term partnerships.",
-  highlight: "Remote-first · Dedicated CSM · Rematch at no cost",
+  label: "Built around skills.",
+  highlight: "Skills assessed · Projects scoped · Quality checked",
   ctaLabel: "See our values →",
   ctaHref: "#values",
 };
-
-export const careersCountries = [
-  "Nicaragua",
-  "Colombia",
-  "Costa Rica",
-  "Honduras",
-  "El Salvador",
-  "Ecuador",
-  "Mexico",
-  "Guatemala",
-  "Peru",
-  "Other LATAM",
-  "Other (please specify)",
-];
-
-export const careersExperienceLevels = [
-  "1–2 years",
-  "3–5 years",
-  "6–9 years",
-  "10+ years",
-];

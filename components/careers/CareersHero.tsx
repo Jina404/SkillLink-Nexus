@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { careersHero } from "@/data/careers";
 
-export function CareersHero() {
+export function CareersHero({ content = careersHero }: { content?: typeof careersHero } = {}) {
   const bgVideoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export function CareersHero() {
   }, []);
 
   return (
-    <section className="hero-wrap hero-fullbleed careers-hero-wrap" aria-label="Careers">
+    <section className="hero-wrap hero-fullbleed careers-hero-wrap" aria-label={content.eyebrow}>
       <div className="hero-fullbleed-bg" aria-hidden="true">
         <video
           ref={bgVideoRef}
@@ -46,15 +46,15 @@ export function CareersHero() {
       </div>
 
       <div className="container careers-hero-inner">
-        <p className="eyebrow">{careersHero.eyebrow}</p>
-        <h1>{careersHero.title}</h1>
-        <p className="careers-hero-sub">{careersHero.subtitle}</p>
+        <p className="eyebrow">{content.eyebrow}</p>
+        <h1>{content.title}</h1>
+        <p className="careers-hero-sub">{content.subtitle}</p>
         <div className="careers-hero-actions">
-          <Link href={careersHero.primaryCta.href} className="btn btn-primary btn-lg">
-            {careersHero.primaryCta.label}
+          <Link href={content.primaryCta.href} className="btn btn-primary btn-lg">
+            {content.primaryCta.label}
           </Link>
-          <Link href={careersHero.secondaryCta.href} className="btn btn-outline btn-lg">
-            {careersHero.secondaryCta.label}
+          <Link href={content.secondaryCta.href} className="btn btn-outline btn-lg">
+            {content.secondaryCta.label}
           </Link>
         </div>
       </div>

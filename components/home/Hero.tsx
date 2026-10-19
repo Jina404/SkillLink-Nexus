@@ -84,9 +84,11 @@ export function Hero() {
           <div className="hero-overlay" aria-hidden />
 
           <div className="hero-inner">
-            <h1>Get more done with an EA who fits how you work.</h1>
+            <h1>Technology projects, delivered with certainty.</h1>
+            {/* CONFIRM: guarantee terms. */}
             <p className="hero-sub">
-              Hand off the details. Stay focused on what matters. Feel the relief in days, not months.
+              A written quote up front. One accountable team. We scope the work, manage vetted contractors, and
+              stand behind every result.
             </p>
 
             <div className="audience-toggle" role="tablist" aria-label="Audience">
@@ -97,7 +99,7 @@ export function Hero() {
                 aria-selected={audience === "hire"}
                 onClick={() => setAudience("hire")}
               >
-                Get an EA
+                Start a project
               </button>
               <button
                 type="button"
@@ -106,7 +108,7 @@ export function Hero() {
                 aria-selected={audience === "work"}
                 onClick={() => setAudience("work")}
               >
-                I want to join as an EA
+                Join as a contractor
               </button>
             </div>
 
@@ -118,8 +120,8 @@ export function Hero() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={
                   audience === "hire"
-                    ? "What do you need help with?"
-                    : "Tell us how you support executives..."
+                    ? "What do you need built?"
+                    : "Tell us about your skills..."
                 }
                 aria-label="Search"
               />
@@ -134,9 +136,9 @@ export function Hero() {
               {(audience === "hire"
                 ? popularSearches.slice(0, 4)
                 : [
-                    { label: "Browse careers", href: "/careers" },
-                    { label: "Apply to join", href: "/careers/apply" },
-                    { label: "Hiring process", href: "/careers#process" },
+                    { label: "For contractors", href: "/careers" },
+                    { label: "Join as a contractor", href: "/careers/apply" },
+                    { label: "How joining works", href: "/careers#process" },
                     { label: "Our values", href: "/careers#values" },
                   ]
               ).map((item) => (
@@ -169,10 +171,11 @@ export function PricingInsights() {
       <div className="container">
         <div className="insights-card">
           <div className="insights-left">
-            <h2>Get insights into executive assistant pricing.</h2>
+            <h2>Agency quality without the agency overhead. Without the marketplace risk.</h2>
+            {/* CONFIRM: delivery guarantee (revisions included, make it right). */}
             <p>
-              We’ll show the typical monthly range for dedicated support matched to the work you
-              need.
+              One contract, one invoice, one team accountable. Revisions are included, and if the
+              result misses the brief, we make it right.
             </p>
             <form className="insights-input" onSubmit={onSubmit}>
               <input
@@ -188,10 +191,10 @@ export function PricingInsights() {
           </div>
           <div className="insights-right">
             <div className="cost-viz">
-              <h4>Cost estimate</h4>
+              <h4>Your price</h4>
               <div className="price-pills">
-                <span>$2,999/mo</span>
-                <span>$4,999/mo</span>
+                <span>From $150</span>
+                <span>Written quote first</span>
               </div>
               <div className="bell" aria-hidden>
                 <svg viewBox="0 0 280 100" preserveAspectRatio="none">
@@ -214,9 +217,9 @@ export function PricingInsights() {
                 </svg>
               </div>
               <div className="cost-labels">
-                <span>Affordable</span>
-                <span className="mid">Typical</span>
-                <span>Experts</span>
+                <span>Packages</span>
+                <span className="mid">Custom</span>
+                <span>Monthly</span>
               </div>
             </div>
           </div>

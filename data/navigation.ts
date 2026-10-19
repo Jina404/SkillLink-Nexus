@@ -1,15 +1,19 @@
 export type NavLink = {
   label: string;
   href: string;
+  /** Opens in a new tab (used for the legal PDFs). */
+  newTab?: boolean;
 };
 
 export type MegaMenuKind = "services" | "outcomes" | "find-work";
 
 export const brand = {
   name: "SkillLink Nexus",
+  legalName: "SkillLink Nexus Ltd",
+  regNo: "PVT-L51DLZB5",
   shortName: "SkillLink",
   logo: "/logo.png",
-  tagline: "Dedicated executive assistants for leaders who need leverage",
+  tagline: "Tech projects by vetted contractors. Nairobi, Kenya.",
   email: "hello@skilllinknexus.com",
   schedulerUrl: "https://cal.com/skilllink-nexus-3lofv4",
 };
@@ -20,11 +24,11 @@ export const primaryNav: {
   mega?: MegaMenuKind;
 }[] = [
   { label: "Services", href: "/services", mega: "services" },
-  { label: "Get outcomes", href: "/for-executives", mega: "outcomes" },
+  { label: "Skills Program", href: "/skills-program" },
   { label: "Why Us", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Careers", href: "/careers" },
-  { label: "Enterprise", href: "/for-businesses" },
+  { label: "For contractors", href: "/careers" },
+  { label: "For organizations", href: "/for-businesses" },
 ];
 
 export const footerColumns: {
@@ -32,50 +36,53 @@ export const footerColumns: {
   links: NavLink[];
 }[] = [
   {
-    title: "For Executives",
+    title: "For organizations",
     links: [
       { label: "How it works", href: "/how-it-works" },
-      { label: "Get an EA", href: "/get-an-ea" },
+      { label: "Submit a project", href: "/request-a-project" },
       { label: "Pricing", href: "/pricing" },
-      { label: "For executives", href: "/for-executives" },
-      { label: "For businesses", href: "/for-businesses" },
-      { label: "Calendar & Scheduling", href: "/services/calendar-scheduling" },
-      { label: "Inbox & Communications", href: "/services/inbox-communications" },
-      { label: "Travel & Events", href: "/services/travel-events" },
+      { label: "Web Development", href: "/services/web-development" },
+      { label: "Brand & Design", href: "/services/brand-design" },
+      { label: "Digital Content & Marketing", href: "/services/digital-content-marketing" },
+      { label: "Software Engineering", href: "/services/software-engineering" },
+      { label: "Data & Analytics", href: "/services/data-analytics" },
+      { label: "Cybersecurity & Compliance", href: "/services/cybersecurity-compliance" },
+      { label: "Executive & Virtual Assistance", href: "/services/executive-virtual-assistance" },
       { label: "All services", href: "/services" },
     ],
   },
   {
-    title: "For Assistants",
+    title: "For contractors",
     links: [
-      { label: "Careers", href: "/careers" },
-      { label: "Apply to join", href: "/careers/apply" },
-      { label: "Hiring process", href: "/careers#process" },
+      { label: "For contractors", href: "/careers" },
+      { label: "Join as a contractor", href: "/careers/apply" },
+      { label: "How joining works", href: "/careers#process" },
       { label: "Our values", href: "/careers#values" },
       { label: "Find work", href: "/careers" },
+      { label: "Skills Program", href: "/skills-program" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Guides", href: "/resources" },
-      { label: "Articles", href: "/resources" },
-      { label: "Case studies", href: "/resources" },
-      { label: "Insights", href: "/resources" },
-      { label: "Help", href: "/get-an-ea" },
+      { label: "Guides", href: "/stories?type=guides" },
+      { label: "Updates", href: "/stories?type=updates" },
+      { label: "Samples", href: "/stories?type=samples" },
+      { label: "All stories", href: "/stories" },
+      { label: "Help", href: "/contact" },
       { label: "Security", href: "/security" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "About us", href: "/how-it-works" },
-      { label: "Why Us", href: "/how-it-works" },
-      { label: "Careers", href: "/careers" },
-      { label: "Contact us", href: "/get-an-ea" },
-      { label: "Enterprise", href: "/for-businesses" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms of Service", href: "/terms" },
+      { label: "About us", href: "/about" },
+      { label: "How it works", href: "/how-it-works" },
+      { label: "For contractors", href: "/careers" },
+      { label: "Contact", href: "/contact" },
+      { label: "For organizations", href: "/for-businesses" },
+      { label: "Privacy Policy", href: "/legal/privacy-policy.pdf", newTab: true },
+      { label: "Terms and Conditions", href: "/legal/terms-and-conditions.pdf", newTab: true },
     ],
   },
 ];
@@ -83,7 +90,7 @@ export const footerColumns: {
 export const footerSocial: {
   label: string;
   href: string;
-  icon: "facebook" | "linkedin" | "x" | "youtube" | "instagram";
+  icon: "linkedin";
 }[] = [
   {
     label: "LinkedIn",
@@ -93,7 +100,7 @@ export const footerSocial: {
 ];
 
 export const footerLegal: NavLink[] = [
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms and Conditions", href: "/legal/terms-and-conditions.pdf", newTab: true },
+  { label: "Privacy Policy", href: "/legal/privacy-policy.pdf", newTab: true },
   { label: "Accessibility", href: "/accessibility" },
 ];
