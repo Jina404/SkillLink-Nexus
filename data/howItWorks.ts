@@ -4,90 +4,87 @@ export type HowItWorksStep = {
 };
 
 export type HowItWorksAudience = {
-  id: "executives" | "assistants";
+  id: string;
   label: string;
   heading: string;
   steps: HowItWorksStep[];
 };
 
+// The ids are internal only and never shown on the site.
 export const howItWorks: HowItWorksAudience[] = [
   {
     id: "executives",
-    label: "For executives",
-    heading: "From first conversation to compounding support",
+    label: "For organizations",
+    heading: "From brief to delivery, with a written quote up front",
     steps: [
       {
         title: "Tell us what you need",
-        description:
-          "Share your role, pace, and the work you want off your plate—calendar, inbox, travel, ops, or all of it.",
+        description: "Share your brief. It takes a few minutes.",
       },
       {
-        title: "Understand your working style",
-        description:
-          "A short discovery maps how you communicate, decide, and delegate so the match fits from week one.",
+        title: "Get a written quote",
+        // CONFIRM: 48-hour quote promise.
+        description: "We scope the project and send one price within 48 hours.",
       },
       {
-        title: "Match you with an assistant",
+        title: "We match and manage a vetted contractor",
         description:
-          "We surface a vetted EA aligned to your priorities. Most executives are live within about 24 hours.",
+          "You deal only with SkillLink Nexus, never with the contractor directly.",
       },
       {
-        title: "Start working together",
-        description:
-          "Access is provisioned, your CSM joins kickoff, and your EA begins owning recurring workflows immediately.",
+        title: "We check the quality",
+        description: "Every deliverable is reviewed before it reaches you.",
       },
       {
-        title: "Scale your support",
+        title: "You approve, we pay",
         description:
-          "As trust compounds, expand into projects, household logistics, board prep, and team-wide coverage.",
+          "Your payment goes to SkillLink Nexus Ltd, and we pay the contractor only after you approve the result.",
       },
     ],
   },
   {
     id: "assistants",
-    label: "For executive assistants",
-    heading: "Build a career supporting ambitious leaders",
+    label: "For contractors",
+    heading: "Do the work you are best at. We handle the rest",
     steps: [
       {
-        title: "Create your profile",
-        description:
-          "Highlight your strengths—calendar, communications, travel, ops—and the industries you’ve supported.",
+        title: "Apply to join",
+        description: "Share your skills, your portfolio and the work you do best.",
+      },
+      {
+        title: "Get assessed",
+        description: "We assess your skills before you are matched to any project.",
       },
       {
         title: "Get matched",
         description:
-          "We pair you with executives whose pace and priorities fit how you work best.",
+          "We match you to projects that fit your skills. Scoping and pricing are done before you start.",
       },
       {
-        title: "Work with clients",
+        title: "Deliver great work",
         description:
-          "Partner with leaders on high-impact work, backed by training, tools, and a success team.",
-      },
-      {
-        title: "Grow your career",
-        description:
-          "Upskill continuously, take on broader scope, and build long-term partnerships that compound.",
+          "We manage the client and deadlines, and check quality before delivery.",
       },
     ],
   },
 ];
 
 export const matchingQuiz = {
-  badge: "Free support scoping",
-  title: "Not sure where to start with executive support?",
+  badge: "Free project scoping",
+  title: "Not sure where to start?",
   subtitle:
-    "Pick your top priority. We’ll take you to the right category—or straight to a discovery call.",
+    "Pick your priority. We’ll take you to the right service—or straight to a quote.",
   questions: [
     {
       id: "priority",
-      prompt: "What’s your top priority right now?",
+      prompt: "What is your priority right now?",
       options: [
-        { label: "Save time", icon: "clock", href: "/services/calendar-scheduling" },
-        { label: "Clear my inbox", icon: "inbox", href: "/services/inbox-communications" },
-        { label: "Travel with less friction", icon: "travel", href: "/services/travel-events" },
-        { label: "Protect focus time", icon: "focus", href: "/services/calendar-scheduling" },
-        { label: "Scale operations", icon: "ops", href: "/services/projects-operations" },
-        { label: "Something else", icon: "other", href: "/get-an-ea" },
+        { label: "Launch a website", icon: "rocket", href: "/services/web-development" },
+        { label: "Design my brand", icon: "palette", href: "/services/brand-design" },
+        { label: "Grow my audience", icon: "trending", href: "/services/digital-content-marketing" },
+        { label: "Understand my data", icon: "chart", href: "/services/data-analytics" },
+        { label: "Secure my systems", icon: "shield", href: "/services/cybersecurity-compliance" },
+        { label: "Get executive support", icon: "briefcase", href: "/services/executive-virtual-assistance" },
       ],
     },
   ],
@@ -95,51 +92,51 @@ export const matchingQuiz = {
 
 export const outcomes = [
   {
-    title: "Get your time back",
-    description: "Delegate the details that steal your week",
-    href: "/services/calendar-scheduling",
+    title: "Launch a website",
+    description: "Business sites and online stores",
+    href: "/services/web-development",
   },
   {
-    title: "Protect focus time",
-    description: "A calendar that guards deep work",
-    href: "/services/calendar-scheduling",
+    title: "Fix or upgrade a site",
+    description: "Faster, cleaner, up to date",
+    href: "/services/web-development",
   },
   {
-    title: "Inbox to clarity",
-    description: "Only what needs you reaches you",
-    href: "/services/inbox-communications",
+    title: "Launch a landing page",
+    description: "One page, built to convert",
+    href: "/services/web-development",
   },
   {
-    title: "Travel without friction",
-    description: "Itineraries planned, expenses filed",
-    href: "/services/travel-events",
+    title: "Build your brand",
+    description: "Logo, brand kit, templates",
+    href: "/services/brand-design",
   },
   {
-    title: "Board-ready operations",
-    description: "Packs, updates, and follow-through",
-    href: "/services/leadership-board",
+    title: "Something else technical",
+    description: "Tell us what you need",
+    href: "/services",
   },
   {
-    title: "Scale your exec team",
-    description: "Support that grows with leadership",
+    title: "Ongoing monthly work",
+    description: "Same vetted contractor, every month",
     href: "/for-businesses",
   },
 ];
 
 export const findWorkLinks = [
   {
-    title: "Browse careers",
-    description: "Mission, values, benefits, and how to join",
+    title: "For contractors",
+    description: "How SkillLink works and how to join",
     href: "/careers",
   },
   {
-    title: "Apply to join",
-    description: "Start your structured EA application",
+    title: "Join as a contractor",
+    description: "Start your application",
     href: "/careers/apply",
   },
   {
     title: "How matching works",
-    description: "From application to first executive match",
+    description: "From application to your first project",
     href: "/careers#process",
   },
   {

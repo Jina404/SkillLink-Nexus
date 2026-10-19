@@ -1,6 +1,15 @@
 import Link from "next/link";
-import { categories, searchCategories } from "@/data/categories";
-import { categoryIcon } from "@/components/ui/icons";
+import { categories, quoteHref, searchCategories } from "@/data/categories";
+import { categoryIcon, IconCheck } from "@/components/ui/icons";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Services",
+  description:
+    "Seven service categories, from web development to cybersecurity and executive assistance. Starting prices, vetted contractors, managed by SkillLink Nexus.",
+  path: "/services",
+});
+
 
 type Props = {
   searchParams: Promise<{ q?: string }>;
@@ -15,10 +24,10 @@ export default async function ServicesPage({ searchParams }: Props) {
       <section className="page-hero">
         <div className="container">
           <p className="eyebrow">Services</p>
-          <h1>Browse executive support by category</h1>
+          <h1>Browse our services by category</h1>
           <p>
-            Explore calendar, inbox, travel, meetings, operations, research, and full-life
-            support—then get matched with a dedicated assistant.
+            Explore websites, brand, content, data, security and monthly support—then get a written
+            price and a vetted contractor.
           </p>
           {q ? (
             <p style={{ marginTop: 12 }}>
@@ -38,7 +47,7 @@ export default async function ServicesPage({ searchParams }: Props) {
               const Icon = categoryIcon(cat.icon);
               return (
                 <Link key={cat.slug} href={`/services/${cat.slug}`} className="category-card">
-                  <span className="category-icon">
+                  <span className="category-icon icon-bare">
                     <Icon />
                   </span>
                   <strong>{cat.name}</strong>
@@ -62,13 +71,29 @@ export default async function ServicesPage({ searchParams }: Props) {
         <div className="container">
           <div className="section-heading">
             <h2>All categories</h2>
+            <p>Written quotes. Vetted contractors. Managed by SkillLink Nexus.</p>
           </div>
           <div className="service-grid">
             {categories.map((cat) => (
-              <Link key={cat.slug} href={`/services/${cat.slug}`} className="service-card">
-                <h4>{cat.name}</h4>
+              <article key={cat.slug} className="service-card">
+                <h4>
+                  <Link href={`/services/${cat.slug}`}>{cat.name}</Link>
+                </h4>
                 <p>{cat.description}</p>
-              </Link>
+                <ul className="plan-features">
+                  {cat.deliverables.map((d) => (
+                    <li key={d}>
+                      <span className="check">
+                        <IconCheck />
+                      </span>
+                      <span>{d}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link href={quoteHref(cat.slug)} className="btn btn-outline">
+                  Get a quote
+                </Link>
+              </article>
             ))}
           </div>
         </div>

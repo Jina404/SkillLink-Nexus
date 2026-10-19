@@ -1,39 +1,39 @@
 export const popularSearches = [
   {
-    label: "Executive calendar management",
-    href: "/services/calendar-scheduling",
+    label: "Website",
+    href: "/services/web-development",
   },
   {
-    label: "Inbox management",
-    href: "/services/inbox-communications",
+    label: "Logo and branding",
+    href: "/services/brand-design",
   },
   {
-    label: "Travel planning",
-    href: "/services/travel-events",
+    label: "Social media",
+    href: "/services/digital-content-marketing",
   },
   {
-    label: "Meeting coordination",
-    href: "/services/meetings-reporting",
+    label: "Data and reports",
+    href: "/services/data-analytics",
   },
   {
-    label: "Executive research",
-    href: "/services/research-documents",
+    label: "Data and reports",
+    href: "/services/data-analytics",
   },
   {
-    label: "Project coordination",
-    href: "/services/projects-operations",
+    label: "Cybersecurity",
+    href: "/services/cybersecurity-compliance",
   },
   {
-    label: "Personal assistant support",
-    href: "/services/household-family",
+    label: "Short video",
+    href: "/services/digital-content-marketing",
   },
 ];
 
 export const heroSuggestions = [
-  "Manage my calendar",
-  "Handle my inbox",
-  "Plan my travel",
-  "Prepare for meetings",
-  "Manage my projects",
-  "Research and organize information",
+  "Build my website",
+  "Design my logo",
+  "Plan my social content",
+  "Secure my systems",
+  "Build a dashboard",
+  "Build an app",
 ];

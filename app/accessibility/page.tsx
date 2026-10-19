@@ -1,5 +1,14 @@
 import Link from "next/link";
 import { brand } from "@/data/navigation";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Accessibility",
+  description:
+    "SkillLink Nexus aims to make its website usable for everyone. Tell us about any barrier you find and we will work with you to fix it.",
+  path: "/accessibility",
+});
+
 
 export default function AccessibilityPage() {
   return (
@@ -33,7 +42,11 @@ export default function AccessibilityPage() {
           </p>
           <h2>Related</h2>
           <p>
-            See also our <Link href="/privacy">Privacy Policy</Link> and{" "}
+            See also our{" "}
+            <a href="/legal/privacy-policy.pdf" target="_blank" rel="noopener noreferrer">
+              Privacy Policy
+            </a>{" "}
+            and{" "}
             <Link href="/security">Security</Link> practices.
           </p>
         </div>

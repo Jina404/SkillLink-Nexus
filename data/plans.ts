@@ -13,122 +13,85 @@ export type Plan = {
   ctaStyle: "solid" | "outline";
 };
 
-/** Public ExecViva-style plan structure and prices already used in this project. */
+/** Starting prices only: every client gets a written quote for their exact scope before work begins. */
 export const plans: Plan[] = [
   {
     id: "starter",
-    name: "Starter",
-    subtitle: "For one executive who needs dedicated support",
+    name: "Packages",
+    subtitle: "For common projects with a clear scope",
     description:
-      "A full-time executive assistant matched to your working style—live in about 24 hours.",
-    price: "$2,999",
-    period: "/ month",
-    includesLabel: "Starter includes:",
+      "Ready-made scopes for websites, brand kits and content. Pick one and start.",
+    price: "From $150",
+    period: "Starting price, final quote based on scope",
+    includesLabel: "Every package includes:",
     features: [
-      {
-        label: "Dedicated EA",
-        detail: "full-time support for 1 executive",
-      },
-      {
-        label: "Client success manager",
-        detail: "onboarding and ongoing fit",
-      },
-      {
-        label: "Pre-trained talent",
-        detail: "ready for calendar, inbox, travel, and ops",
-      },
-      {
-        label: "Rematch guarantee",
-        detail: "at no cost if the fit isn’t strong",
-      },
-      {
-        label: "Fast onboarding",
-        detail: "typically live within 24 hours",
-      },
+      { label: "Written quote before work starts", detail: "" },
+      { label: "Managed by SkillLink Nexus", detail: "quality checked before delivery" },
+      // CONFIRM: contractor levels (Rising, Pro, Expert).
+      { label: "Choose your contractor level", detail: "Rising, Pro or Expert" },
+      // CONFIRM: revisions-included terms.
+      { label: "Revisions included", detail: "" },
     ],
-    cta: "Get started",
-    ctaHref: "/get-an-ea",
+    cta: "See packages",
+    ctaHref: "/packages",
     ctaStyle: "solid",
   },
   {
     id: "enhanced",
-    name: "Enhanced",
-    subtitle: "For leaders sharing support across a small team",
+    name: "Custom project",
+    subtitle: "For work that needs its own scope",
     description:
-      "One dedicated EA supporting up to two executives, with the same managed service and rematch promise.",
-    price: "$3,999",
-    period: "/ month",
+      "Cybersecurity, data, video, apps and more. Tell us the goal and we send a written quote.",
+    // CONFIRM: 48-hour quote promise.
+    price: "Quote in 48 hours",
+    period: "Priced to your scope",
     popular: true,
-    includesLabel: "Everything in Starter, plus:",
+    includesLabel: "Every custom project includes:",
     features: [
-      {
-        label: "Up to 2 executives",
-        detail: "shared capacity with clear priorities",
-      },
-      {
-        label: "Cross-leader coordination",
-        detail: "calendars and workflows aligned",
-      },
-      {
-        label: "Dedicated CSM",
-        detail: "check-ins that keep value compounding",
-      },
-      {
-        label: "Rematch at no cost",
-        detail: "if the partnership needs a reset",
-      },
-      {
-        label: "Priority onboarding",
-        detail: "faster path for growing teams",
-      },
+      { label: "We do the scoping for you", detail: "" },
+      { label: "Written quote before work starts", detail: "" },
+      { label: "Vetted contractor", detail: "matched and managed by us" },
+      // CONFIRM: signed scope and authorization before security tests.
+      { label: "Security tests start with a signed scope and authorization", detail: "" },
     ],
-    cta: "Get started",
-    ctaHref: "/get-an-ea",
+    cta: "Submit a project",
+    ctaHref: "/request-a-project",
     ctaStyle: "outline",
   },
   {
     id: "enterprise",
-    name: "Enterprise",
-    subtitle: "For teams that need coverage without gaps",
+    name: "Monthly plan",
+    subtitle: "For ongoing work, month after month",
     description:
-      "Support for up to three executives, with PTO and leave backfill included so work never stalls.",
-    price: "$4,999",
-    period: "/ month",
-    includesLabel: "Everything in Enhanced, plus:",
+      "Executive assistants, content, maintenance and reporting on a monthly plan.",
+    price: "Custom monthly plan",
+    period: "Priced to the support you need",
+    includesLabel: "Every monthly plan includes:",
     features: [
+      { label: "Dedicated, vetted contractor", detail: "" },
+      { label: "Executive assistant plans", detail: "monthly, priced to your needs" },
+      // CONFIRM: invoicing and procurement-ready paperwork.
+      { label: "Invoicing and procurement-ready paperwork", detail: "" },
+      // CONFIRM: optional impact report (no figures may be shown).
       {
-        label: "Up to 3 executives",
-        detail: "one EA covering a leadership cluster",
-      },
-      {
-        label: "PTO & leave backfill",
-        detail: "continuity when your EA is out",
-      },
-      {
-        label: "Team-ready workflows",
-        detail: "ops that scale across leaders",
-      },
-      {
-        label: "Procurement support",
-        detail: "security and onboarding for enterprise",
-      },
-      {
-        label: "Dedicated rollout",
-        detail: "CSM-led expansion as you grow",
+        label: "Optional impact report",
+        detail: "on the work delivered and the income created",
       },
     ],
     cta: "Talk to us",
-    ctaHref: "/get-an-ea",
+    ctaHref: "/contact",
     ctaStyle: "outline",
   },
 ];
 
+/** Not currently displayed. */
 export const pricingInsights = {
-  title: "Get insights into executive assistant pricing.",
+  title: "Agency quality without the agency overhead. Without the marketplace risk.",
+  // CONFIRM: delivery guarantee (revisions included, make it right).
   subtitle:
-    "We’ll show the typical monthly range for dedicated support matched to the work you need.",
+    "One contract, one invoice, one team accountable. Revisions are included, and if the result misses the brief, we make it right.",
   placeholder: "To start, describe what you need done.",
-  affordable: "$2,999/mo",
-  typical: "$3,999/mo",
-  experts: "$4,999/mo",
+  affordable: "Packages",
+  typical: "Custom",
+  experts: "Monthly",
 };

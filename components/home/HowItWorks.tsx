@@ -2,24 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { howItWorks, matchingQuiz } from "@/data/howItWorks";
-import { IconClock, IconInbox, IconProjects, IconSpark, IconTravel } from "@/components/ui/icons";
-
-function optionIcon(icon: string) {
-  switch (icon) {
-    case "clock":
-    case "focus":
-      return IconClock;
-    case "inbox":
-      return IconInbox;
-    case "travel":
-      return IconTravel;
-    case "ops":
-      return IconProjects;
-    default:
-      return IconSpark;
-  }
-}
+import { howItWorks, matchingQuiz, type HowItWorksAudience } from "@/data/howItWorks";
+import { IconSparkBadge, optionIcon } from "@/components/ui/icons";
 
 export function MatchingQuiz() {
   const q = matchingQuiz.questions[0];
@@ -30,8 +14,8 @@ export function MatchingQuiz() {
         <div className="quiz-layout">
           <div className="quiz-copy">
             <div className="quiz-badge">
-              <span className="spark">
-                <IconSpark />
+              <span className="spark icon-bare">
+                <IconSparkBadge />
               </span>
               {matchingQuiz.badge}
             </div>
@@ -61,9 +45,51 @@ export function MatchingQuiz() {
   );
 }
 
-export function HowItWorks({ showProcessLink = true }: { showProcessLink?: boolean }) {
-  const [tab, setTab] = useState<"executives" | "assistants">("executives");
-  const audience = howItWorks.find((a) => a.id === tab) ?? howItWorks[0];
+export type HowItWorksVisuals = {
+  needLabel: string;
+  needTasks: { label: string; on: boolean }[];
+  styleBadge: string;
+  styleTitle: string;
+  prefs: { left: string; right: string; value: number }[];
+  match: { initials: string; name: string; role: string; tag: string; status: string; eta: string };
+};
+
+const defaultVisuals: HowItWorksVisuals = {
+  needLabel: "What you need",
+  needTasks: [
+    { label: "Website", on: true },
+    { label: "Brand", on: true },
+    { label: "Content", on: true },
+    { label: "Data", on: false },
+  ],
+  styleBadge: "Project scope",
+  styleTitle: "Written quote",
+  prefs: [
+    { left: "Brief", right: "Scoped", value: 68 },
+    { left: "Timeline", right: "Agreed", value: 82 },
+    { left: "Price", right: "Quoted", value: 74 },
+  ],
+  match: {
+    initials: "C",
+    name: "Vetted contractor",
+    role: "Matched to your project",
+    tag: "Matched",
+    status: "Managed by SkillLink",
+    eta: "Skills vetted",
+  },
+};
+
+export function HowItWorks({
+  showProcessLink = true,
+  audiences = howItWorks,
+  visuals = defaultVisuals,
+}: {
+  showProcessLink?: boolean;
+  audiences?: HowItWorksAudience[];
+  visuals?: HowItWorksVisuals;
+}) {
+  const [tab, setTab] = useState<string>(audiences[0].id);
+  const audience = audiences.find((a) => a.id === tab) ?? audiences[0];
   const preview = audience.steps.slice(0, 3);
 
   return (
@@ -74,8 +100,9 @@ export function HowItWorks({ showProcessLink = true }: { showProcessLink?: boole
             <h2>How it works</h2>
             <p>{audience.heading}</p>
           </div>
+          {audiences.length > 1 ? (
           <div className="how-tabs" role="tablist" aria-label="Audience">
-            {howItWorks.map((a) => (
+            {audiences.map((a) => (
               <button
                 key={a.id}
                 type="button"
@@ -88,6 +115,7 @@ export function HowItWorks({ showProcessLink = true }: { showProcessLink?: boole
               </button>
             ))}
           </div>
+          ) : null}
         </div>
 
         <div className="how-steps">
@@ -97,9 +125,9 @@ export function HowItWorks({ showProcessLink = true }: { showProcessLink?: boole
               className={`how-card ${i === 0 ? "tone-a" : i === 1 ? "tone-b" : "tone-c"}`}
             >
               <div className="how-card-visual" aria-hidden="true">
-                {i === 0 ? <NeedVisual /> : null}
-                {i === 1 ? <StyleVisual /> : null}
-                {i === 2 ? <MatchVisual /> : null}
+                {i === 0 ? <NeedVisual v={visuals} /> : null}
+                {i === 1 ? <StyleVisual v={visuals} /> : null}
+                {i === 2 ? <MatchVisual v={visuals} /> : null}
               </div>
               <div className="how-card-copy">
                 <div className="step-num">Step {i + 1}</div>
@@ -134,13 +162,8 @@ export function HowItWorks({ showProcessLink = true }: { showProcessLink?: boole
   );
 }
 
-function NeedVisual() {
-  const tasks = [
-    { label: "Inbox", on: true },
-    { label: "Calendar", on: true },
-    { label: "Travel Booking", on: true },
-    { label: "Research", on: false },
-  ];
+function NeedVisual({ v }: { v: HowItWorksVisuals }) {
+  const tasks = v.needTasks;
 
   return (
     <div className="hiw-glass">
@@ -148,7 +171,7 @@ function NeedVisual() {
         <span className="hiw-dot" />
         <span className="hiw-dot" />
         <span className="hiw-dot" />
-        <span className="hiw-glass-label">What to delegate</span>
+        <span className="hiw-glass-label">{v.needLabel}</span>
       </div>
       <div className="hiw-checks">
         {tasks.map((task) => (
@@ -162,18 +185,14 @@ function NeedVisual() {
   );
 }
 
-function StyleVisual() {
-  const prefs = [
-    { left: "Async", right: "Realtime", value: 68 },
-    { left: "Cadence", right: "High", value: 82 },
-    { left: "Tone", right: "Formal", value: 74 },
-  ];
+function StyleVisual({ v }: { v: HowItWorksVisuals }) {
+  const prefs = v.prefs;
 
   return (
     <div className="hiw-prefs">
       <div className="hiw-persona">
-        <span className="hiw-persona-badge">Working style</span>
-        <strong>Mapped profile</strong>
+        <span className="hiw-persona-badge">{v.styleBadge}</span>
+        <strong>{v.styleTitle}</strong>
       </div>
       {prefs.map((pref) => (
         <div key={pref.left} className="hiw-pref">
@@ -190,25 +209,25 @@ function StyleVisual() {
   );
 }
 
-function MatchVisual() {
+function MatchVisual({ v }: { v: HowItWorksVisuals }) {
   return (
     <div className="hiw-match">
       <div className="hiw-match-top">
         <div className="hiw-avatar" aria-hidden>
-          AR
+          {v.match.initials}
         </div>
         <div className="hiw-match-meta">
-          <strong>Alex R.</strong>
-          <span className="hiw-role">Executive Assistant</span>
+          <strong>{v.match.name}</strong>
+          <span className="hiw-role">{v.match.role}</span>
         </div>
-        <span className="hiw-match-tag">Matched</span>
+        <span className="hiw-match-tag">{v.match.tag}</span>
       </div>
       <div className="hiw-match-foot">
         <span className="hiw-status">
           <i />
-          Connected
+          {v.match.status}
         </span>
-        <span className="hiw-eta">Live in ~24h</span>
+        <span className="hiw-eta">{v.match.eta}</span>
       </div>
     </div>
   );

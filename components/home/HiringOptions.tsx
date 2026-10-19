@@ -1,31 +1,39 @@
 import Link from "next/link";
-import { plans } from "@/data/plans";
-import { testimonials } from "@/data/testimonials";
-import { resources, resourceTopics } from "@/data/resources";
+import { plans, type Plan } from "@/data/plans";
 import { IconCheck } from "@/components/ui/icons";
 
-export function HiringOptions() {
+export function HiringOptions({
+  heading = "Choose how you want to work with us",
+  sub = "Three ways to get work done. Every one starts with a price agreed before work starts.",
+  items = plans,
+  badge = "POPULAR",
+  note = "Prices in USD, invoiced in KES. Starting prices only. You receive a written quote for your exact scope before any work begins.",
+}: {
+  heading?: string;
+  sub?: string;
+  items?: Plan[];
+  badge?: string;
+  /** Small line under the cards; pass null to hide it. */
+  note?: string | null;
+} = {}) {
   return (
     <section className="section section-soft" id="pricing">
       <div className="container">
         <div className="section-heading" style={{ textAlign: "center", marginLeft: "auto", marginRight: "auto" }}>
-          <h2>Choose how you want to hire</h2>
-          <p style={{ marginLeft: "auto", marginRight: "auto" }}>
-            Flexible options designed for dedicated executive support—pay for capacity that fits
-            your team.
-          </p>
+          <h2>{heading}</h2>
+          <p style={{ marginLeft: "auto", marginRight: "auto" }}>{sub}</p>
         </div>
 
         <div className="plans-grid">
-          {plans.map((plan) => (
+          {items.map((plan) => (
             <article key={plan.id} className={`plan-card ${plan.popular ? "popular" : ""}`}>
-              {plan.popular && <span className="plan-badge">POPULAR</span>}
+              {plan.popular && <span className="plan-badge">{badge}</span>}
               <h3>{plan.name}</h3>
               <p className="plan-sub">{plan.subtitle}</p>
               <p className="plan-desc">{plan.description}</p>
               <div className="plan-price">
                 <strong>{plan.price}</strong>
-                <span>{plan.period}</span>
+                {plan.period ? <span>{plan.period}</span> : null}
               </div>
               <p className="plan-includes">{plan.includesLabel}</p>
               <ul className="plan-features">
@@ -35,7 +43,8 @@ export function HiringOptions() {
                       <IconCheck />
                     </span>
                     <span>
-                      <strong>{f.label}</strong> — {f.detail}
+                      <strong>{f.label}</strong>
+                      {f.detail ? <> — {f.detail}</> : null}
                     </span>
                   </li>
                 ))}
@@ -49,99 +58,39 @@ export function HiringOptions() {
             </article>
           ))}
         </div>
+        {note ? <p className="plans-note">{note}</p> : null}
       </div>
     </section>
   );
 }
 
-export function TestimonialSection() {
-  return (
-    <section className="section">
-      <div className="container">
-        <div className="section-heading">
-          <h2>Leaders who chose dedicated support</h2>
-          <p>
-            Founders and operators who freed their week—and kept raising the bar with a dedicated EA.
-          </p>
-        </div>
-        <div className="testimonial-grid">
-          {testimonials.map((t) => (
-            <article key={t.name} className="testimonial-card">
-              <p className="quote">“{t.quote}”</p>
-              <div className="author">
-                <strong>{t.name}</strong>
-                <span>
-                  {t.title}
-                  <br />
-                  {t.company}
-                </span>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+type CTALink = { label: string; href: string };
 
-export function ResourcesSection() {
-  return (
-    <section className="section section-soft">
-      <div className="container">
-        <div className="section-heading row">
-          <div>
-            <h2>Resources</h2>
-            <p>Guides, articles, and insights on delegation, time, and executive support.</p>
-          </div>
-          <Link href="/resources" className="btn btn-outline">
-            Browse all
-          </Link>
-        </div>
-
-        <div className="topic-row">
-          {resourceTopics.map((topic) => (
-            <Link key={topic} href="/resources" className="topic-chip">
-              {topic}
-            </Link>
-          ))}
-        </div>
-
-        <div className="resource-grid">
-          {resources.slice(0, 6).map((r) => (
-            <Link key={r.slug} href={`/resources/${r.slug}`} className="resource-card">
-              <div className="resource-meta">
-                <span className="resource-type">{r.type}</span>
-                <span>{r.category}</span>
-                <span>{r.readTime}</span>
-              </div>
-              <h3>{r.title}</h3>
-              <p>{r.excerpt}</p>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-export function CTABand() {
+export function CTABand({
+  title = "Have a project? Get a quote and a vetted contractor.",
+  body = "Tell us what you need built, designed or analyzed. We scope it, match it and manage it to delivery.",
+  primary = { label: "Get a quote", href: "/request-a-project" },
+  secondary = { label: "I want to join as a contractor", href: "/pricing" },
+}: {
+  title?: string;
+  body?: string;
+  primary?: CTALink;
+  secondary?: CTALink;
+} = {}) {
   return (
     <section className="section">
       <div className="container">
         <div className="cta-band">
           <div>
-            <h2>Match in under 24 hours.</h2>
-            <p>
-              One discovery conversation. A dedicated EA plus CSM. Rematch at no cost if the fit
-              isn’t right.
-            </p>
+            <h2>{title}</h2>
+            <p>{body}</p>
           </div>
           <div className="cta-actions">
-            <Link href="/get-an-ea" className="btn btn-primary btn-lg">
-              Get started
+            <Link href={primary.href} className="btn btn-primary btn-lg">
+              {primary.label}
             </Link>
-            <Link href="/pricing" className="btn btn-outline btn-lg">
-              See plans
+            <Link href={secondary.href} className="btn btn-outline btn-lg">
+              {secondary.label}
             </Link>
           </div>
         </div>

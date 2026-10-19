@@ -1156,13 +1156,22 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   transform: translateY(-2px);
 }
 
-.category-icon {
-  width: 36px;
-  height: 36px;
+/* Shared style for every icon wrapper: the icon stands alone, with no box, tint, border or shadow. */
+.icon-bare {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  line-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+
+.category-icon {
   color: var(--brand);
-  display: grid;
-  place-items: center;
 }
 
 .category-card strong {
@@ -1198,64 +1207,36 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   line-height: 1.5;
 }
 
-.tools-sub + .tools-sub {
-  margin-top: 4px;
+/* Slightly tighter than other sections so the small logos don't leave a gap. */
+.section.tools-section {
+  padding: 56px 0;
 }
 
-.tools-cloud {
-  margin-top: 36px;
-  display: grid;
-  gap: 12px;
-  justify-items: center;
-}
-
-.tools-row {
+/* Logos sit directly on the section background, with no cards. */
+.partner-grid {
+  --logo-h: 60px;
+  margin-top: 32px;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-}
-
-.tool-pill {
-  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 0.55rem 0.95rem 0.55rem 0.65rem;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--ink);
-  box-shadow: none;
-  white-space: nowrap;
+  gap: 72px;
 }
 
-.tool-logo {
-  width: 20px;
-  height: 20px;
+.partner-logo {
+  display: flex;
+  align-items: center;
+}
+
+/* Same visible height for both logos; never stretched or cropped. */
+.partner-logo img {
+  height: calc(var(--logo-h) * var(--logo-scale, 1));
+  width: auto;
   object-fit: contain;
-  flex-shrink: 0;
-  display: block;
+  transition: transform 0.2s ease;
 }
 
-.tool-mark {
-  width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
-
-.tool-mark-fallback {
-  width: 20px;
-  height: 20px;
-  background: var(--brand);
-  font-size: 0.65rem;
+.partner-logo:hover img {
+  transform: scale(1.03);
 }
 
 /* Service listings: full-bleed video, content in centered container */
@@ -1586,14 +1567,7 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
 }
 
 .quiz-badge .spark {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  background: var(--brand);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-size: 0.7rem;
+  color: var(--brand);
 }
 
 .quiz-copy h2 {
@@ -2530,25 +2504,21 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
   flex-wrap: wrap;
 }
 
+/* Invisible 36px tap target; only the icon shows. */
 .footer-social-btn {
   width: 36px;
   height: 36px;
-  border-radius: 999px;
-  border: 1px solid rgba(200, 160, 255, 0.4);
-  display: grid;
-  place-items: center;
   color: #efe6ff;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease;
 }
 
 .footer-social-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 22px;
+  height: 22px;
 }
 
 .footer-social-btn:hover {
-  background: rgba(143, 0, 225, 0.25);
-  border-color: rgba(200, 160, 255, 0.75);
+  color: #fff;
 }
 
 .footer-bottom {
@@ -3573,7 +3543,8 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
     gap: 10px;
   }
 
-  .nav-actions .btn-primary {
+  .nav-actions .btn-primary,
+  .nav-actions .btn-outline {
     padding: 0.55rem 0.95rem;
     font-size: 0.88rem;
   }
@@ -3761,7 +3732,8 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
     padding-inline: max(16px, env(safe-area-inset-right)) max(16px, env(safe-area-inset-left));
   }
 
-  .nav-actions .btn-primary {
+  .nav-actions .btn-primary,
+  .nav-actions .btn-outline {
     padding: 0.5rem 0.8rem;
     font-size: 0.84rem;
   }
@@ -3776,20 +3748,15 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
     white-space: nowrap;
   }
 
-  .tools-cloud {
+  .section.tools-section {
+    padding: 40px 0;
+  }
+
+  .partner-grid {
+    --logo-h: 48px;
     margin-top: 28px;
-    gap: 10px;
-  }
-
-  .tool-pill {
-    font-size: 0.82rem;
-    padding: 0.45rem 0.8rem 0.45rem 0.45rem;
-  }
-
-  .tool-mark {
-    width: 22px;
-    height: 22px;
-    font-size: 0.65rem;
+    flex-direction: column;
+    gap: 32px;
   }
 }
 
@@ -3938,7 +3905,8 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
 }
 
 @media (max-width: 420px) {
-  .nav-actions .btn-primary {
+  .nav-actions .btn-primary,
+  .nav-actions .btn-outline {
     padding: 0.5rem 0.75rem;
     font-size: 0.82rem;
   }
@@ -3963,5 +3931,223 @@ body:has(.hero-fullbleed) .site-header .btn-primary {
 
   .cta-actions .btn {
     width: 100%;
+  }
+}
+
+/* Forms: inline errors, checkboxes, status line and spam trap (existing colours only). */
+.form-error {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+  line-height: 1.35;
+}
+
+.book-card .form-field [aria-invalid="true"] {
+  border-color: var(--brand-dark);
+}
+
+.book-card .form-field textarea {
+  resize: vertical;
+  font: inherit;
+}
+
+.form-check {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.form-check input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  flex-shrink: 0;
+  accent-color: var(--brand);
+}
+
+.form-check input:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+.form-check a {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.form-status {
+  margin: 0 0 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--brand-dark);
+}
+
+.form-status:empty {
+  margin: 0;
+}
+
+.book-submit:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.form-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Deliverable bullets inside the /services category cards. */
+.service-card .plan-features {
+  margin: 14px 0 20px;
+}
+
+/* Story filter chips are buttons: show which one is selected. */
+button.topic-chip {
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.topic-chip[aria-pressed="true"] {
+  border-color: var(--brand);
+  color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.topic-chip:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Screen-reader-only live text (e.g. "Showing 4 stories"). */
+.sr-only-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Pricing cards: the small line under the price sits on its own line. */
+.plan-price span {
+  display: block;
+  margin-top: 6px;
+}
+
+.plans-note {
+  margin: 20px auto 0;
+  max-width: 640px;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+/* /packages table (existing colours and radius). */
+.packages-table-wrap {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.packages-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.packages-table th,
+.packages-table td {
+  padding: 18px 20px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+}
+
+.packages-table thead th {
+  white-space: nowrap;
+  background: var(--surface-soft);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.packages-table tbody tr:last-child th,
+.packages-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.packages-table tbody th {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.packages-table td p {
+  margin: 0 0 10px;
+  color: var(--ink-soft);
+}
+
+.packages-table .plan-features {
+  margin: 0;
+  gap: 6px;
+}
+
+.packages-price {
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.packages-table .btn {
+  white-space: nowrap;
+}
+
+/* Phones: each package becomes a stacked block. */
+@media (max-width: 720px) {
+  .packages-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .packages-table,
+  .packages-table tbody,
+  .packages-table tr,
+  .packages-table th,
+  .packages-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .packages-table tr {
+    padding: 16px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .packages-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .packages-table th,
+  .packages-table td {
+    padding: 0 0 10px;
+    border-bottom: 0;
+  }
+
+  .packages-table .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
